@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const Yourney = require('../models/yourney.js')
+// const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
   if (!req.session.currentUser) {
@@ -40,10 +41,23 @@ router.post('/create', (req, res, next) => {
     req.flash('yourney-form-data', { date, name, snippet, description, location, days })
     return res.redirect('/create')
   }
+
   const yourney = new Yourney({ date, name, snippet, description, location, days })
-  return yourney.save()
+  yourney.save()
     .then(() => {
-      res.redirect('/')
+      res.redirect('/yourney/:id')
+    })
+    .catch(next)
+})
+
+router.get('/yourney/:id', (req, res, next) => {
+  const id = req.params.yourneyId
+  Yourney.findById(id)
+    .then((results) => {
+      const data = {
+        yourney: results
+      }
+      res.render('yourney-details', data)
     })
     .catch(next)
 })

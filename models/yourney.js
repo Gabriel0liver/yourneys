@@ -29,7 +29,7 @@ const yourneySchema = new Schema({
     type: Date
   },
   days: {
-    type: Number,
+    type: String,
     enum: ['1', '2', '3', '4', '5+'],
     required: true
   },
