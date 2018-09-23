@@ -3,14 +3,14 @@
   text-align: center;
   font-size: 16px;
   text-decoration: none;
-  color: $color-fg;
-  background-color: $color-button-bg;
-  border: 1px solid $color-fg;
+  color: #222;
+  background-color: #fff;
+  border: 1px solid #222;
   border-radius: 5px;
   cursor: pointer;
   
-  &.danger {
-    color: $color-inverse-fg;
-    background-color: $color-button-danger-bg;
-  }
+  // &.danger {
+  //   color: $color-inverse-fg;
+  //   background-color: $color-button-danger-bg;
+  // }
 }

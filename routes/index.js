@@ -52,10 +52,11 @@ router.post('/create', (req, res, next) => {
 
 router.get('/yourney/:id', (req, res, next) => {
   const id = req.params.yourneyId
+  console.log(id)
   Yourney.findById(id)
-    .then((results) => {
+    .then((result) => {
       const data = {
-        yourney: results
+        yourney: result
       }
       res.render('yourney-details', data)
     })

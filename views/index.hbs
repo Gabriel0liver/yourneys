@@ -8,21 +8,21 @@
   {{/each}}
 </ul> --}}
 
-<ul>
+<ul class="cards">
   {{#each yourneys}}
-    <li>
+    <li class="yourney-card">
       <div>
         <h3>{{this.name}}</h3>
-        <p>Created by <a href="#">{{this.owner}}</a></p>
-        <p>Days: {{this.days}}</p>
+        <p class="owner">Created by <a href="#">{{this.owner}}</a></p>
+        <p class="duration">Days: {{this.days}}</p>
         {{#if this.date}}
-        <p>Date: {{this.date}}</p>
+        <p class="date">Date: {{this.date}}</p>
         {{/if}}
-        <p>{{this.snippet}}</p>
-        <a href="#">+</a>
+        <p class="snippet">{{this.snippet}}</p>
+        <a href="/yourney/{{this._id}}" class="see-more">+</a>
         <button type="submit" class="icon icon-heart"></button>
-        <button type="submit" class="icon icon-share"></button>
-        <button type="submit" class="button">Add</button>
+        <button type="submit" class="icon icon-share">S</button>
+        <button type="submit" class="button add">Add</button>
         {{#if this.addedBy}}
           <button type="submit" class="button">Added</button>
         {{/if}}

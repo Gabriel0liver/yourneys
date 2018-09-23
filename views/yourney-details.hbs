@@ -1,6 +1,13 @@
-<section>
-  <h2>{{yourney.name}}</h2>
-  <h3>Created by</h3>
-  <h3>Days</h3>
-  <p>{{yourney.description}}</p>
-</section>
+<main class="container">
+  <section id="yourney-details">
+    <h2>BLABLA{{yourney.name}}</h2>
+    <div class="details-link">
+      <button type="submit" class="icon icon-heart"></button>
+      <button type="submit" class="icon icon-share">S</button>
+      <button type="submit" class="button add">Add</button>
+    </div>
+    <p>Created by {{yourney.owner}}</p>
+    <p>Days {{yourney.days}}</p>
+    <p>Description {{yourney.description}}</p>
+  </section>
+</main>
