@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user.js')
+const Yourney = require('../models/yourney')
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
@@ -12,6 +13,7 @@ router.get('/', (req, res, next) => {
     return res.redirect('/auth/login')
   }
   User.findById(user._id)
+    .populate('addedBy')
     .then((result) => {
       const data = { user: result }
 
@@ -54,5 +56,20 @@ router.post('/edit', (req, res, next) => {
     })
     .catch(next)
 })
+
+// router.get('/profile', (req, res, next) => {
+//   const id = req.params.id
+//   const user = req.session.currentUser._id
+//   const yourney = req.yourney.id
+//   Yourney.findById(id, { $filter: { input: [yourney], as: addedBy(user.id) } })
+//     .then((result) => {
+//       console.log(result)
+//       const data = {
+//         yourney: result
+//       }
+//       res.render('layout-profile', data)
+//     })
+//     .catch(next)
+// })
 
 module.exports = router
