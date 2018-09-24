@@ -1,0 +1,50 @@
+<main class="container">
+  <form method="POST" action="/create">
+    <div class="field">
+      <label></label>
+      <input type="text" name="name" value="{{fields.name}}" placeholder="New yourney" class="title-form" maxlength="15" />
+    </div>
+
+    <div class="field">
+      <label>Snippet</label>
+      <input type="text" name="snippet" placeholder="In one sentence describe your yourney" value="{{fields.snippet}}" />
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <input type="text" name="description" value="{{fields.description}}" />
+    </div>
+
+    <div class="field">
+      <label>Location</label>
+      <input type="text" name="location" placeholder="Barcelona" value="{{fields.location}}" />
+    </div>
+
+    <div class="field">
+      <label>Date</label>
+      <input type="date" name="date" value="{{fields.date}}" />
+    </div>
+
+    <div class="field select">
+      <label class="option-label">Days</label>
+      <div class="option-value">
+        <select name="days">
+          <option value="0">select</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5+">5+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field submit">
+      <button type="submit" class="submit-button">Create</button>
+    </div>
+    {{#if message}}
+    <p class="validation">{{message}}</p>
+    {{/if}}
+
+  </form>
+</main>
