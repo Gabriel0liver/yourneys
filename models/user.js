@@ -13,10 +13,13 @@ const userSchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    default: 'a brief description about me'
   },
   url: {
-    type: String
+    type: String,
+    default: 'https://image.flaticon.com/icons/png/512/146/146005.png'
+
   }
 })
 

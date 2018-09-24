@@ -1,7 +1,23 @@
-const data = {
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
-  url: 'https://image.flaticon.com/icons/png/512/146/146005.png',
-  description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?'
+function encrypt (password) {
+  // encrypt password
+  const salt = bcrypt.genSaltSync(saltRounds)
+  return bcrypt.hashSync(password, salt)
 }
 
-module.exports = data
+const users = [{
+  username: 'Axel',
+  password: encrypt('Axel'),
+  url: 'https://image.flaticon.com/icons/png/512/146/146005.png',
+  description: 'For this reason, we want to log in and establish a session with the user. The session will be stored in the database, it will reference a particular user profile, and it will expire and be automatically removed from the database.'
+},
+{
+  username: 'Yendy',
+  password: encrypt('1234'),
+  url: 'https://image.flaticon.com/icons/png/512/146/146005.png',
+  description: 'For this reason, we want to log in and establish a session with the user. The session will be stored in the database, it will reference a particular user profile, and it will expire and be automatically removed from the database.'
+}]
+
+module.exports = users
