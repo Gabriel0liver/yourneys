@@ -3,7 +3,7 @@ body {
   padding-bottom: 80px;
 }
 
-#site-header {
+.site-header {
     position: fixed;
     top: 0;
     z-index: 3;
@@ -14,7 +14,6 @@ body {
 .header-nav {
   background-color: #FDFFFC;
   overflow: hidden;
-  line-height: 40px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -34,7 +33,7 @@ body {
     text-align: right;
   
     img {
-      width: 10%;
+      width: 20%;
     }
   }
 }
@@ -88,7 +87,7 @@ main {
 }
 
 
-#site-menu {
+.site-menu {
   overflow: hidden;
   background-color: $color-bg;
   position: fixed;
@@ -97,29 +96,4 @@ main {
   box-shadow: 0 2px 11px #D4D5D4;
 }
 
-// --- yourney-details
 
-#yourney-details {
-  .details-link {
-    display: grid;
-    width: 30%;
-    float: right;
-
-    .icon-heart {
-      grid-column: 1;
-      grid-row: 1;
-      margin-bottom: 10px;
-    }
-
-    .icon-share {
-      grid-column: 2;
-      grid-row: 1;
-      margin-bottom: 10px;
-    }
-
-    .add {
-      grid-column: 1 / 3;
-      grid-row: 3;
-    }
-  }
-}
