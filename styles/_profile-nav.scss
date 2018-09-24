@@ -5,6 +5,7 @@
 #wrapper.pushed{
   transform:translateX(-150px);
 }
+
 .menu{
   box-sizing: border-box;
   position: fixed;
@@ -24,7 +25,7 @@
   }
 
   .current-user {
-    box-shadow: 0 -3px 11px #999;
+    box-shadow: 0 -3px 11px $color-shadow;
     margin: 0;
     padding: 18px 37px;
     font-weight: 700;
@@ -45,6 +46,12 @@
   
   a {
     text-decoration: none;
+  }
+
+  .log-out {
+    border: 0;
+    background-color: #fff;
+    padding: 0;
   }
 }
 
