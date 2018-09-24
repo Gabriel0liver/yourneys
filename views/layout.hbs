@@ -7,6 +7,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/style-icon.css' />
     <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700" rel="stylesheet">
+    {{!-- <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
   </head>
   <body>
     {{#if currentUser}}
@@ -16,13 +18,7 @@
     {{#if currentUser}}
       {{>navbar}}
     {{/if}}
-    {{#if currentUser}}
-      <p>
-        Logged in as: {{currentUser.username}}
-        <form method="POST" action="/auth/logout">
-          <button type="submit">Log Out</button>
-        </form>
-      </p>
-    {{/if}}
+
+    <script src="/javascripts/profile-menu.js"></script>
   </body>
 </html>

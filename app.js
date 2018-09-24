@@ -11,6 +11,7 @@ const hbs = require('hbs')
 
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
+const profileRouter = require('./routes/profile')
 
 const app = express()
 
@@ -21,9 +22,9 @@ mongoose.connect('mongodb://localhost/yourneys', {
 })
 
 // view engine setup
-hbs.registerPartials(path.join(__dirname, '/views/partials'))
-app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, 'views'))
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
 app.use(session({
   store: new MongoStore({
@@ -52,6 +53,7 @@ app.use(flash())
 
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/profile', profileRouter)
 
 // -- 404 and error handler
 

@@ -8,4 +8,9 @@ html {
 body {
   margin: 0;
   padding: 0;
+  transition: transform .4s; 
+
+  &.pushed{
+    transform:translateX(-150px);
+  }
 }

@@ -7,7 +7,8 @@
     "start-dev": "nodemon ./bin/www",
     "sass": "node-sass --output-style compressed --source-map true styles/style.scss public/stylesheets/style.css",
     "sass-watch": "nodemon -e js,json,hbs ./bin/www | node-sass --output-style compressed --source-map true --watch styles/style.scss public/stylesheets/style.css",
-    "seed-yourney": "node ./bin/seed/yourney.js"
+    "seed-yourney": "node ./bin/seed/yourney.js",
+    "seed-user": "node ./bin/seed/user.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
@@ -21,6 +22,7 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "mongoose": "^5.2.16",
+    "mongoose-dateonly": "^1.0.6",
     "morgan": "~1.9.0",
     "node-sass": "^4.9.3"
   },

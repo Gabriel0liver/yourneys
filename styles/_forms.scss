@@ -1,22 +1,4 @@
 form {
-
-  // &.is-processing {
-  //   opacity: 0.5;
-  // }
-
-  // .field {
-  //   margin-bottom: 20px;
-
-  //   &.has-error {
-  //     label {
-  //       color: red;
-  //     }
-  //     input {
-  //       border: 1px solid  red;
-  //     }
-  //   }
-  // }
-
   label {
     display: block;
     margin-bottom: 10px;
@@ -77,6 +59,8 @@ form {
 
     a {
       text-decoration: none;
+      display: inline-block;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
     }
   }
 
@@ -92,7 +76,7 @@ form {
     overflow: visible;
     text-align: center;
     height: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
   }
 
   hr:after {
@@ -100,7 +84,7 @@ form {
       content: 'or';
       padding: 0 20px;
       position: relative;
-      top: -13px;
+      top: -11px;
   }
 
 }
