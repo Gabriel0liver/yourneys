@@ -1,6 +1,6 @@
 'use strict'
 
-const wrapper = document.getElementById('wrapper')
+const wrapper = document.getElementsByTagName('body')[0]
 const menuTrigger = document.getElementById('menu_trigger')
 const menu = document.getElementById('menu')
 menuTrigger.addEventListener('click', () => {
