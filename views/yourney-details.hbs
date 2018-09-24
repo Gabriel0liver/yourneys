@@ -2,9 +2,18 @@
   <section id="yourney-details">
     <h2>{{yourney.name}}</h2>
     <div class="details-link">
-      <button type="submit" class="icon icon-heart-o"></button>
-      <button type="submit" class="icon icon-share"></button>
-      <button type="submit" class="button add">Add</button>
+      <form method="POST" action="/yourney/{{yourney.id}}/fav" >
+        <button type="submit" class="icon icon-heart-o"></button>
+        <input type="hidden" name="fav" value="">
+      </form>
+      <form method="POST" action="/yourney/{{yourney.id}}/share" >
+        <button type="submit" class="icon icon-share"></button>
+        <input type="hidden" name="share" value="">
+      </form>
+      <form method="POST" action="/yourney/{{yourney.id}}/add" >
+        <button type="submit" class="button add">Add</button>
+        <input type="hidden" name="add" value="">
+      </form>
     </div>
     <p class="owner">Created by <a href="#">{{yourney.owner.username}}</a></p>
     <p class="location">{{this.location}}</p>

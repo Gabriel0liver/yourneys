@@ -37,10 +37,10 @@ const yourneySchema = new Schema({
   dayOne: {
     type: String
   },
-  addedBy: {
+  addedBy: [{
     type: ObjectId,
     ref: 'User'
-  }
+  }]
 })
 
 const Yourney = mongoose.model('Yourney', yourneySchema)
