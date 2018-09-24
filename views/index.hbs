@@ -14,7 +14,7 @@
       <li class="yourney-card">
         <div>
           <h3><a href="/yourney/{{this._id}}">{{this.name}}</a></h3>
-          <p class="owner">Created by <a href="#" class="name-owner">{{this.owner}}</a></p>
+          <p class="owner">Created by <a href="#" class="name-owner">{{this.owner.username}}</a></p>
           <p class="location">{{this.location}}</p>
           <p class="duration">{{this.days}} days</p>
           {{#if this.date}}
@@ -25,12 +25,12 @@
           <button type="submit" class="icon icon-heart-o"></button>
           <button type="submit" class="icon icon-share"></button>
           <button type="submit" class="button add">Add</button>
-          {{#if this.addedBy}}
+          {{!-- {{#if this.addedBy}}
             <button type="submit" class="button">Added</button>
           {{/if}}
           {{#if this.owner}}
-            <button type="submit" class="button">Edit</button>
-          {{/if}} 
+            <button type="submit" class="button" class="add">Edit</button>
+          {{/if}}  --}}
           {{!-- WHYYYYY --}}
           {{else}}
           <p class="empty">No content</p>

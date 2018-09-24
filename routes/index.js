@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
     return res.redirect('/auth/login')
   }
   Yourney.find({})
+    .populate('owner')
     .then((result) => {
       const data = { yourneys: result }
 
@@ -36,6 +37,7 @@ router.post('/create', (req, res, next) => {
     return res.redirect('/auth/login')
   }
   console.log(req.body)
+  const owner = req.session.currentUser._id
   const { date, name, snippet, description, location, days } = req.body
   if (!days || !name || !snippet || !description || !location) {
     req.flash('yourney-form-error', 'Mandatory fields!')
@@ -43,7 +45,7 @@ router.post('/create', (req, res, next) => {
     return res.redirect('/create')
   }
 
-  const yourney = new Yourney({ date, name, snippet, description, location, days })
+  const yourney = new Yourney({ date, name, snippet, description, location, days, owner })
   yourney.save()
     .then(() => {
       res.redirect(`/yourney/${yourney.id}`)
