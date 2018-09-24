@@ -50,7 +50,7 @@ router.post('/edit', (req, res, next) => {
   User.findByIdAndUpdate(user._id, update, { new: true })
     .then((result) => {
       req.session.currentUser = result
-      res.redirect('/')
+      res.redirect('/profile')
     })
     .catch(next)
 })
