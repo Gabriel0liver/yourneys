@@ -71,4 +71,17 @@ router.get('/yourney/:id', (req, res, next) => {
     .catch(next)
 })
 
+router.post('/yourney/:id/add', (req, res, next) => {
+  const id = req.params.id
+  const userId = req.session.currentUser._id
+  Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } })
+    .then((result) => {
+      const data = {
+        yourney: result
+      }
+      res.render('yourney-details', data)
+    })
+    .catch(next)
+})
+
 module.exports = router
