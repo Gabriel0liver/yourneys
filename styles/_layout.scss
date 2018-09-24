@@ -1,4 +1,7 @@
 // --- header
+body {
+  padding-bottom: 80px;
+}
 
 #site-header {
     position: fixed;
@@ -39,9 +42,9 @@
 // --- nav-bar
 
 .nav-bar {
-  background-color: #fff;
+  background-color: $color-bg;
   text-align: center;
-  padding: 34px 0;
+  padding: 20px 0;
 
   ul {
     margin: 0;
@@ -56,12 +59,12 @@
     flex: 1;
 
     a {
-      font-size: 80px;
+      font-size: 20px;
     }
 
     .icon {
       text-decoration: none;
-      color: #222;
+      color: $color-black;
     }
   }
 }
@@ -87,7 +90,7 @@ main {
 
 #site-menu {
   overflow: hidden;
-  background-color: #333;
+  background-color: $color-bg;
   position: fixed;
   bottom: 0;
   width: 100%;
