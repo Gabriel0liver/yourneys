@@ -35,6 +35,7 @@ router.post('/create', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login')
   }
+  console.log(req.body)
   const { date, name, snippet, description, location, days } = req.body
   if (!days || !name || !snippet || !description || !location) {
     req.flash('yourney-form-error', 'Mandatory fields!')
@@ -45,13 +46,13 @@ router.post('/create', (req, res, next) => {
   const yourney = new Yourney({ date, name, snippet, description, location, days })
   yourney.save()
     .then(() => {
-      res.redirect('/yourney/:id')
+      res.redirect(`/yourney/${yourney.id}`)
     })
     .catch(next)
 })
 
 router.get('/yourney/:id', (req, res, next) => {
-  const id = req.params.yourneyId
+  const id = req.params.id
   console.log(id)
   Yourney.findById(id)
     .then((result) => {
