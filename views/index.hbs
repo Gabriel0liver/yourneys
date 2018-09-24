@@ -13,15 +13,16 @@
     <li class="yourney-card">
       <div>
         <h3>{{this.name}}</h3>
-        <p class="owner">Created by <a href="#">{{this.owner}}</a></p>
-        <p class="duration">Days: {{this.days}}</p>
+        <p class="owner">Created by <a href="#" class="name-owner">{{this.owner}}</a></p>
+        <p class="location">{{this.location}}</p>
+        <p class="duration">{{this.days}} days</p>
         {{#if this.date}}
         <p class="date">Date: {{this.date}}</p>
         {{/if}}
         <p class="snippet">{{this.snippet}}</p>
         <a href="/yourney/{{this._id}}" class="see-more">+</a>
-        <button type="submit" class="icon icon-heart"></button>
-        <button type="submit" class="icon icon-share">S</button>
+        <button type="submit" class="icon icon-heart-o"></button>
+        <button type="submit" class="icon icon-share"></button>
         <button type="submit" class="button add">Add</button>
         {{#if this.addedBy}}
           <button type="submit" class="button">Added</button>

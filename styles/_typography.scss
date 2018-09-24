@@ -1,8 +1,9 @@
 body {
   background-color: $color-bg;
   color: $color-black;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
 a {
@@ -12,6 +13,7 @@ a {
 
 
 h1 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
@@ -20,6 +22,7 @@ h1 {
 }
 
 h2 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   margin-top: 0;
   font-size: 35px;
   font-weight: 300;
@@ -27,6 +30,7 @@ h2 {
 }
 
 h3 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   margin: 0;
   margin-bottom: 40px;
   font-size: 25px;
@@ -34,7 +38,11 @@ h3 {
 }
 
 p {
-  margin: 6px 12px;
+  margin: 5px 0;
+}
+
+input, button {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 // use with @include inverse()

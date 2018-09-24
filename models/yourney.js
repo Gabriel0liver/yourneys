@@ -3,6 +3,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
+const DateOnly = require('mongoose-dateonly')(mongoose)
 
 const yourneySchema = new Schema({
   owner: {
@@ -26,7 +27,7 @@ const yourneySchema = new Schema({
     required: true
   },
   date: {
-    type: Date
+    type: DateOnly
   },
   days: {
     type: String,
