@@ -1,0 +1,32 @@
+#layout-profile {
+  .profile-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pic {
+    flex: 1;
+  }
+
+  .profile-pic {
+    width: 100%;
+  }
+
+  h2 {
+    flex: 2;
+    text-align: center;
+    margin: 0;
+  }
+
+  .edit-profile {
+    flex: 1;
+  }
+
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
