@@ -1,8 +1,26 @@
 <header id="site-header">
   <nav class="header-nav">
     <h1><a href="/">Yourneys</a></h1>
-    <div class="profile-nav">
-     <img src="https://image.flaticon.com/icons/png/512/146/146005.png" alt="profile-picture">
+    <div class="profile-nav navbar-toggle-button" id="menu_trigger">
+      <img src="https://image.flaticon.com/icons/png/512/146/146005.png" alt="profile-picture">
     </div>
   </nav>
 </header>
+
+<div class="menu" id="menu">
+  {{#if currentUser}}
+    <p class="current-user">{{currentUser.username}}</p>
+    <div class="profile-menu">
+      <ul>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Inbox</a></li>
+        <li>
+          <form method="POST" action="/auth/logout">
+            <button type="submit">Log Out</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  {{/if}}
+</div>
