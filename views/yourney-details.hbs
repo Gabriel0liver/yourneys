@@ -1,13 +1,15 @@
 <main class="container">
   <section id="yourney-details">
-    <h2>BLABLA{{yourney.name}}</h2>
+    <h2>{{yourney.name}}</h2>
     <div class="details-link">
-      <button type="submit" class="icon icon-heart"></button>
-      <button type="submit" class="icon icon-share">S</button>
+      <button type="submit" class="icon icon-heart-o"></button>
+      <button type="submit" class="icon icon-share"></button>
       <button type="submit" class="button add">Add</button>
     </div>
-    <p>Created by {{yourney.owner}}</p>
-    <p>Days {{yourney.days}}</p>
-    <p>Description {{yourney.description}}</p>
+    <p class="owner">Created by <a href="#">{{yourney.owner.username}}</a></p>
+    <p class="location">{{this.location}}</p>
+    <p class="days">{{yourney.days}} days</p>
+    <p class="date">{{yourney.date}}</p>
+    <p class="description">{{yourney.description}}</p>
   </section>
 </main>
