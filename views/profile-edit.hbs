@@ -1,7 +1,9 @@
 <main class="container">
-  <form method="POST" action="/profile/edit">
+  <form method="POST" action="/profile/edit" enctype="multipart/form-data">
+  
     <div class="field">
-      <img src="{{user.url}}" alt="">
+      <label>Image</label>
+      <input src="{{user.url}}" type="file" name="photo">
     </div>
 
     <div class="field">
