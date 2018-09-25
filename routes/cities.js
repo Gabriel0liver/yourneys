@@ -18,18 +18,18 @@ router.get('/', (req, res, next) => {
     matchQuery.img = img;
   }
 
-  Yourney.find(matchQuery)
-    .populate('owner')
-    .then((yourneyresult) => {
-      City.findOne({ location })
-        .then((cityresult) => {
-          const data = {
-            yourneys: yourneyresult,
-            location,
-            img: cityresult.img
-          };
-          res.render('city', data);
-        });
+  const promiseYourney = Yourney.find(matchQuery).populate('owner');
+  const promiseCity = City.findOne({ location });
+
+  Promise.all([promiseYourney, promiseCity])
+    .then(results => {
+      const yourneys = results[0];
+      const city = results[1];
+      const data = {
+        yourneys,
+        city
+      };
+      res.render('city', data);
     })
     .catch(next);
 });
