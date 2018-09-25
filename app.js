@@ -14,11 +14,8 @@ const hbs = require('hbs')
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
 const profileRouter = require('./routes/profile')
-<<<<<<< HEAD
 const yourneyRouter = require('./routes/yourney')
-=======
 const searchRouter = require('./routes/search')
->>>>>>> e973a6ab415a3100af3b821debf168119f55e348
 
 const app = express()
 
@@ -61,11 +58,8 @@ app.use(flash())
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/profile', profileRouter)
-<<<<<<< HEAD
 app.use('/yourney', yourneyRouter)
-=======
 app.use('/search', searchRouter)
->>>>>>> e973a6ab415a3100af3b821debf168119f55e348
 
 // -- 404 and error handler
 

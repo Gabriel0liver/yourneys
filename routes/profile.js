@@ -5,7 +5,7 @@ const router = express.Router()
 const User = require('../models/user.js')
 const uploadCloud = require('../services/cloudinary.js')
 
-// const Yourney = require('../models/yourney')
+const Yourney = require('../models/yourney')
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
