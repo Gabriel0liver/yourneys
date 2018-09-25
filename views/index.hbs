@@ -1,19 +1,22 @@
-<main class="container">
+{{!-- YOURNEY CARD FOR THE HOME IF NOT --}}
+
+{{!-- <main class="container">
   <h2>Yourneys</h2>
-
-  {{!-- {{yourneys}} --}}
-
-  {{!-- <ul class="yourney-list">
-    {{#each yourneys}}
-      <li>{{>yourneycard}}</li>
-    {{/each}}
-  </ul> --}}
 
   <ul class="cards">
     {{#each yourneys}}   
       {{> yourneycard this}}
     {{/each}}
   </ul>
+</main> --}}
+
+
+<main class="container">
+  <h2>Cities</h2>
+
+  <ul class="home-cards">
+    {{#each cities}}
+      {{> citycard this}}
+    {{/each}}
+  </ul>
 </main>
-
-

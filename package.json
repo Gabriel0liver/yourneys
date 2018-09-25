@@ -9,6 +9,7 @@
     "sass-watch": "node-sass --output-style compressed --source-map true --watch styles/style.scss public/stylesheets/style.css",
     "seed-yourney": "node ./bin/seed/yourney.js",
     "seed-user": "node ./bin/seed/user.js",
+    "seed-city": "node ./bin/seed/cities.js",
     "postinstall": "npm run sass"
   },
   "engines": {

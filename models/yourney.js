@@ -24,7 +24,8 @@ const yourneySchema = new Schema({
   },
   location: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   date: {
     type: DateOnly
