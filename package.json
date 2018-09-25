@@ -10,6 +10,10 @@
     "seed-yourney": "node ./bin/seed/yourney.js",
     "seed-user": "node ./bin/seed/user.js"
   },
+  "engines": {
+    "node": "10.9.0",
+    "npm": "6.2.0"
+  },
   "dependencies": {
     "bcrypt": "^3.0.0",
     "cloudinary": "^1.11.0",
