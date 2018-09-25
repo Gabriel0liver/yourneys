@@ -14,7 +14,7 @@ router.get('/results', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
-  const { location, date, days, home } = req.query;
+  const { location, date, days } = req.query;
 
   // check if you have location, date, days
   let matchQuery = {};
@@ -32,9 +32,7 @@ router.get('/results', (req, res, next) => {
     .populate('owner')
     .then((results) => {
       const data = {
-        yourneys: results,
-        home,
-        location
+        yourneys: results
       };
       res.render('search-results', data);
     })

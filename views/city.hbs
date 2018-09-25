@@ -1,0 +1,15 @@
+<img src="{{img}}" alt="" class="photo-city-collection">
+<main class="container city-collection">
+  <section class="city">
+    <h2>{{location}}</h2>
+    <ul class="cards">
+      {{#unless yourneys.length}}
+      <p class="empty">No results</p>
+      {{/unless}}
+
+      {{#each yourneys}}
+      {{> yourneycard this}}
+      {{/each}}
+    </ul>
+  </section>
+</main>

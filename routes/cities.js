@@ -1,44 +1,37 @@
-// const express = require('express');
-// const router = express.Router();
-// const Yourney = require('../models/yourney.js');
+const express = require('express');
+const router = express.Router();
+const Yourney = require('../models/yourney.js');
+const City = require('../models/city.js');
 
-// router.get('/', (req, res, next) => {
-//   if (!req.session.currentUser) {
-//     return res.redirect('/auth/login');
-//   }
+router.get('/', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const { location, img } = req.query;
 
-//   res.render('search');
-// });
+  // check if you have location, date, days
+  let matchQuery = {};
+  if (location) {
+    matchQuery.location = location.toLowerCase();
+  }
+  if (img) {
+    matchQuery.img = img;
+  }
 
-// router.get('/', (req, res, next) => {
-//   if (!req.session.currentUser) {
-//     return res.redirect('/auth/login');
-//   }
-//   const { location, date, days, home } = req.query;
+  Yourney.find(matchQuery)
+    .populate('owner')
+    .then((yourneyresult) => {
+      City.findOne({ location })
+        .then((cityresult) => {
+          const data = {
+            yourneys: yourneyresult,
+            location,
+            img: cityresult.img
+          };
+          res.render('city', data);
+        });
+    })
+    .catch(next);
+});
 
-//   // check if you have location, date, days
-//   let matchQuery = {};
-//   if (location) {
-//     matchQuery.location = location.toLowerCase();
-//   }
-//   if (date) {
-//     matchQuery.date = date;
-//   }
-//   if (days) {
-//     matchQuery.days = days;
-//   }
-
-//   Yourney.find(matchQuery)
-//     .populate('owner')
-//     .then((results) => {
-//       const data = {
-//         yourneys: results,
-//         home,
-//         location
-//       };
-//       res.render('search-results', data);
-//     })
-//     .catch(next);
-// });
-
-// module.exports = router;
+module.exports = router;

@@ -12,6 +12,10 @@
   box-shadow: 0 3px 11px $color-shadow;
   margin-top: 50px;
 
+  &:first-child {
+    margin-top: 5px;
+  }
+
   div {
     display: grid;
   }
