@@ -8,11 +8,13 @@
       <form method="POST" action="/yourney/{{yourney.id}}/share" >
         <button type="submit" class="icon icon-share"></button>
       </form>
-      {{#if this.addedBy}}
-        <button type="submit" class="button add">Added</button>
-        {{else}}
-        <button type="submit" class="button add">Add</button>
-      {{/if}}
+      <form method="POST" action="/yourney/{{yourney.id}}/add">
+        {{#if this.addedBy}}
+          <button type="submit" class="button add">Added</button>
+          {{else}}
+          <button type="submit" class="button add">Add</button>
+        {{/if}}
+      </form>
     </div>
     <p class="owner">Created by <a href="#" class="name-owner">{{yourney.owner.username}}</a></p>
     <p class="location">{{this.location}}</p>

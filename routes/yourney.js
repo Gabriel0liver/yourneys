@@ -58,6 +58,7 @@ router.post('/:id/add', (req, res, next) => {
   const userId = req.session.currentUser._id;
   Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } })
     .then((result) => {
+      console.log(result);
       res.redirect(`/yourney/${id}`);
     })
     .catch(next);
@@ -69,14 +70,13 @@ router.post('/:id/remove', (req, res, next) => {
 
   for (let a = 0; a < this.yourney.addedBy.length; a++) {
     if (this.yourney.addedBy[a] !== userId) {
-      return res.redirect('/');
+      Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } })
+        .then((result) => {
+          console.log(result);
+          res.redirect(`/yourney/${id}`);
+        })
+        .catch(next);
     }
-
-    Yourney.findByIdAndUpdate(id, { $delete: { addedBy: userId } })
-      .then(() => {
-        res.redirect(`/yourney/${id}`);
-      })
-      .catch(next);
   }
 });
 

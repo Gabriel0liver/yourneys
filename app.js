@@ -11,7 +11,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const hbs = require('hbs');
 
-const api = require('./routes/api');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
@@ -57,7 +56,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use('/', indexRouter);
-app.use('/api', api);
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);
 app.use('/yourney', yourneyRouter);
