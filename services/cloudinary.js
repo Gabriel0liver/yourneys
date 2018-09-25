@@ -14,7 +14,7 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'webbcn0818v2', // The name of the folder in cloudinary
+  folder: 'yourneys', // The name of the folder in cloudinary
   allowedFormats: ['jpg', 'png', 'gif'],
   filename: function (req, file, cb) {
     cb(null, random.generate(random.FILE_ID_LENGTH)) // The file on cloudinary would have the same name as the original file name
