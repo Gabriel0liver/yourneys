@@ -19,6 +19,9 @@
       {{>navbar}}
       <script src="/javascripts/profile-menu.js"></script>
     {{/if}}
-    
+    {{#unless currentUser}}
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="/javascripts/signup.js"></script>
+    {{/unless}}
   </body>
 </html>

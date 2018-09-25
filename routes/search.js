@@ -1,31 +1,31 @@
-const express = require('express')
-const router = express.Router()
-const Yourney = require('../models/yourney.js')
+const express = require('express');
+const router = express.Router();
+const Yourney = require('../models/yourney.js');
 
 router.get('/', (req, res, next) => {
   if (!req.session.currentUser) {
-    return res.redirect('/auth/login')
+    return res.redirect('/auth/login');
   }
 
-  res.render('search')
-})
+  res.render('search');
+});
 
 router.get('/results', (req, res, next) => {
   if (!req.session.currentUser) {
-    return res.redirect('/auth/login')
+    return res.redirect('/auth/login');
   }
-  const { location, date, days } = req.query
+  const { location, date, days } = req.query;
 
   // check if you have location, date, days
-  let matchQuery = {}
+  let matchQuery = {};
   if (location) {
-    matchQuery.location = location
+    matchQuery.location = location;
   }
   if (date) {
-    matchQuery.date = date
+    matchQuery.date = date;
   }
   if (days) {
-    matchQuery.days = days
+    matchQuery.days = days;
   }
 
   Yourney.find(matchQuery)
@@ -33,10 +33,10 @@ router.get('/results', (req, res, next) => {
     .then((results) => {
       const data = {
         yourneys: results
-      }
-      res.render('search-results', data)
+      };
+      res.render('search-results', data);
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
-module.exports = router
+module.exports = router;

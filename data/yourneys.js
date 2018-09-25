@@ -21,6 +21,6 @@ const data = [{
   location: 'London',
   date: '2018/09/22',
   days: '1'
-}]
+}];
 
-module.exports = data
+module.exports = data;

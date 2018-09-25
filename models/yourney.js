@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
-const DateOnly = require('mongoose-dateonly')(mongoose)
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
+const DateOnly = require('mongoose-dateonly')(mongoose);
 
 const yourneySchema = new Schema({
   owner: {
@@ -41,8 +41,8 @@ const yourneySchema = new Schema({
     type: ObjectId,
     ref: 'User'
   }]
-})
+});
 
-const Yourney = mongoose.model('Yourney', yourneySchema)
+const Yourney = mongoose.model('Yourney', yourneySchema);
 
-module.exports = Yourney
+module.exports = Yourney;
