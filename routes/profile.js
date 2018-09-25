@@ -3,7 +3,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user.js')
-const Yourney = require('../models/yourney')
+const uploadCloud = require('../services/cloudinary.js')
+
+// const Yourney = require('../models/yourney')
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
@@ -40,19 +42,19 @@ router.get('/edit', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/edit', (req, res, next) => {
+router.post('/edit', uploadCloud.single('profilepic'), (req, res, next) => {
   const user = req.session.currentUser
   if (!req.session.currentUser) {
     return res.redirect('/auth/login')
   }
-  console.log(req.body)
   const { username, description } = req.body
+  const profilepic = req.file.url
   if (!username || !description) {
     req.flash('yourney-form-error', 'Please fill the fields')
     req.flash('yourney-form-data', { username, description })
-    return res.redirect('/edit')
+    return res.redirect('/profile/edit')
   }
-  const update = { username, description }
+  const update = { username, description, profilepic }
   User.findByIdAndUpdate(user._id, update, { new: true })
     .then((result) => {
       req.session.currentUser = result

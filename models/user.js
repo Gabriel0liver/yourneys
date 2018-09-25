@@ -16,7 +16,7 @@ const userSchema = new Schema({
     type: String,
     default: 'a brief description about me'
   },
-  url: {
+  profilepic: {
     type: String,
     default: 'https://image.flaticon.com/icons/png/512/146/146005.png'
 
