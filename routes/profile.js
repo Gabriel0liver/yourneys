@@ -6,10 +6,14 @@ const User = require('../models/user.js');
 const uploadCloud = require('../services/cloudinary.js');
 
 const Yourney = require('../models/yourney');
-// const ObjectId = require('mongoose').Types.ObjectId
-
+// const ObjectId = require('mongoose').Types.ObjectId;
+// it should be /:id
 router.get('/', (req, res, next) => {
   const user = req.session.currentUser;
+  // const profileId = req.params.id;
+  // if (user._id === profileId) {
+  //   user.isMyProfile = true;
+  // }
   console.log(user);
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
@@ -83,6 +87,20 @@ router.get('/favorite', (req, res, next) => {
     .catch(next);
 });
 
+// other users profileeee
+
+// router.get('/:id', (req, res, next) => {
+//   const id = req.params.id;
+//   if (!req.session.currentUser) {
+//     return res.redirect('/auth/login');
+//   }
+//   User.findById(id)
+//     .then((userData) => {
+//       const data = { user: userData };
+//       res.render('other-profile', data);
+//     })
+//     .catch(next);
+// });
 // router.get('/profile', (req, res, next) => {
 //   const id = req.params.id
 //   const user = req.session.currentUser._id

@@ -5,27 +5,31 @@
         <img src="{{user.profilepic}}" alt="profile-pic" class="profile-pic">
       </div>
       <h2>{{user.username}}</h2>
-      <div class="edit-profile">
-        <a href="/profile/edit" class="button edit">Edit</a>
-      </div>
+      {{!-- {{#if user.isMyProfile}} --}}
+        <div class="edit-profile">
+          <a href="/profile/edit" class="button edit">Edit</a>
+        </div>
+      {{!-- {{/if}} --}}
     </div>
     <h3>About Me</h3>
     <p>{{user.description}}</p>
 
-    <h3>Upcoming Yourneys</h3>
-    <ul>
-      {{#each yourneys}}
-        {{> yourneycard this}}
-      {{/each}}
-    </ul>
+    
+      <h3>Upcoming Yourneys</h3>
+      <ul>
+        {{#each yourneys}}
+          {{> yourneycard this}}
+        {{/each}}
+      </ul>
     {{!-- {{> upcoming }} --}}
     
     {{!-- {{#if yourneys}}
       {{> done}}
-    {{/if}} --}}
+    {{!-- {{/if}} --}} 
     
     {{!-- {{#> created }}
     {{/created}} --}}
+    {{!-- {{/if}} --}}
   </section>
 </main>
 
