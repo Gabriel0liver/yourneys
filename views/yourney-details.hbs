@@ -4,16 +4,15 @@
     <div class="details-link">
       <form method="POST" action="/yourney/{{yourney.id}}/fav" >
         <button type="submit" class="icon icon-heart-o"></button>
-        <input type="hidden" name="fav" value="">
       </form>
       <form method="POST" action="/yourney/{{yourney.id}}/share" >
         <button type="submit" class="icon icon-share"></button>
-        <input type="hidden" name="share" value="">
       </form>
-      <form method="POST" action="/yourney/{{yourney.id}}/add" >
+      {{#if this.addedBy}}
+        <button type="submit" class="button add">Added</button>
+        {{else}}
         <button type="submit" class="button add">Add</button>
-        <input type="hidden" name="add" value="">
-      </form>
+      {{/if}}
     </div>
     <p class="owner">Created by <a href="#" class="name-owner">{{yourney.owner.username}}</a></p>
     <p class="location">{{this.location}}</p>

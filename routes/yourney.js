@@ -63,4 +63,21 @@ router.post('/:id/add', (req, res, next) => {
     .catch(next)
 })
 
+router.post('/:id/remove', (req, res, next) => {
+  const id = req.params.id
+  const userId = req.session.currentUser._id
+
+  for (let a = 0; a < this.yourney.addedBy.length; a++) {
+    if (this.yourney.addedBy[a] !== userId) {
+      return res.redirect('/')
+    }
+
+    Yourney.findByIdAndUpdate(id, { $delete: { addedBy: userId } })
+      .then(() => {
+        res.redirect(`/yourney/${id}`)
+      })
+      .catch(next)
+  }
+})
+
 module.exports = router
