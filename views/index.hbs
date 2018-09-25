@@ -10,32 +10,8 @@
   </ul> --}}
 
   <ul class="cards">
-    {{#each yourneys}}
-      <li class="yourney-card">
-        <div>
-          <h3><a href="/yourney/{{this._id}}">{{this.name}}</a></h3>
-          <p class="owner">Created by <a href="#" class="name-owner">{{this.owner.username}}</a></p>
-          <p class="location">{{this.location}}</p>
-          <p class="duration">{{this.days}} days</p>
-          {{#if this.date}}
-          <p class="date">Date: {{this.date}}</p>
-          {{/if}}
-          <p class="snippet">{{this.snippet}}</p>
-          <a href="/yourney/{{this._id}}" class="see-more">+</a>
-          <button type="submit" class="icon icon-heart-o"></button>
-          <button type="submit" class="icon icon-share"></button>
-          <button type="submit" class="button add">Add</button>
-          {{!-- {{#if this.addedBy}}
-            <button type="submit" class="button">Added</button>
-          {{/if}}
-          {{#if this.owner}}
-            <button type="submit" class="button" class="add">Edit</button>
-          {{/if}}  --}}
-          {{!-- WHYYYYY --}}
-          {{else}}
-          <p class="empty">No content</p>
-        </div>
-      </li>
+    {{#each yourneys}}   
+      {{> yourneycard this}}
     {{/each}}
   </ul>
 </main>

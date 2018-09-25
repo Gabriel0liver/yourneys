@@ -1,25 +1,22 @@
-<div>
+<li class="yourney-card">
   <div>
-    <h3><a href="/{{this._id}}">{{this.name}}</a></h3>
-    <p>Created by <a href="#">{{this.owner}}</a></p>
-    <p>{{this.location}}</p>
-    <p>{{this.days}}</p>
+    <h3><a href="/yourney/{{this._id}}">{{this.name}}</a></h3>
+    <p class="owner">Created by <a href="#" class="name-owner">{{this.owner.username}}</a></p>
+    <p class="location">{{this.location}}</p>
+    <p class="duration">{{this.days}} days</p>
     {{#if this.date}}
-      <p>{{this.date}}</p>
-    {{else}}
+      <p class="date">Date: {{this.date}}</p>
+      {{else}}
       <p class="empty">No content</p>
     {{/if}}
-
+    <p class="snippet">{{this.snippet}}</p>
+    <a href="/yourney/{{this._id}}" class="see-more">+</a>
+    <button type="submit" class="icon icon-heart-o"></button>
+    <button type="submit" class="icon icon-share"></button>
+    {{#if this.addedBy}}
+      <button type="submit" class="button add">Added</button>
+      {{else}}
+      <button type="submit" class="button add">Add</button>
+    {{/if}}
   </div>
-  <div>
-    <div>
-      <button type="submit" class="icon icon-heart"></button>
-      <button type="submit" class="icon icon-share"></button>
-    </div>
-      <button type="submit" class="button">Add</button>
-      <button type="submit" class="button">Added</button>
-      <button type="submit" class="button">Edit</button>
-  </div>
-  <p>{{this.snippet}}</p>
-  <a href="#">+</a>
-</div>
+</li>

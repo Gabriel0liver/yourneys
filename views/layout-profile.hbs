@@ -12,9 +12,11 @@
     <h3>About Me</h3>
     <p>{{user.description}}</p>
     <h3>Upcoming Yourneys</h3>
-    {{#each yourneys}}
-      {{> yourneycard this}}
-    {{/each}}
+    <ul>
+      {{#each yourneys}}
+        {{> yourneycard this}}
+      {{/each}}
+    </ul>
   </section>
 </main>
 
