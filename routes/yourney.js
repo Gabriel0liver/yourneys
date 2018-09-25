@@ -58,7 +58,7 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id/add', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
-  Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } })
+  Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } }, { new: true })
     .then((result) => {
       console.log(result);
       res.redirect(`/yourney/${id}`);
@@ -70,16 +70,12 @@ router.post('/:id/remove', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
 
-  for (let a = 0; a < this.yourney.addedBy.length; a++) {
-    if (this.yourney.addedBy[a] !== userId) {
-      Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } })
-        .then((result) => {
-          console.log(result);
-          res.redirect(`/yourney/${id}`);
-        })
-        .catch(next);
-    }
-  }
+  Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true })
+    .then((result) => {
+      console.log(result);
+      res.redirect(`/profile`);
+    })
+    .catch(next);
 });
 
 module.exports = router;

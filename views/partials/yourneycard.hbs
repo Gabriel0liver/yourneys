@@ -14,9 +14,13 @@
     <button type="submit" class="icon icon-heart-o"></button>
     <button type="submit" class="icon icon-share"></button>
     {{#if this.addedBy}}
-      <button type="submit" class="button add">Added</button>
+      <form action="/yourney/{{this.id}}/remove" method="POST">
+        <button type="submit" class="button add">Remove</button>
+      </form>
       {{else}}
-      <button type="submit" class="button add">Add</button>
+      <form action="/yourney/{{this.id}}/add" method="POST">
+        <button type="submit" class="button add">Add</button>
+      </form>
     {{/if}}
   </div>
 </li>
