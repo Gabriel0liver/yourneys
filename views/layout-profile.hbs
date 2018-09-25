@@ -11,13 +11,9 @@
     </div>
     <h3>About Me</h3>
     <p>{{user.description}}</p>
-    {{#each yourney}}
-      {{#if this.addedBy.length}}
-        <h3>Upcoming Yourneys</h3>
-        {{#each this.addedBy}}
-          <p>{{this.yourney}}</p>
-        {{/each}}
-      {{/if}}
+    <h3>Upcoming Yourneys</h3>
+    {{#each yourneys}}
+      {{> yourneycard this}}
     {{/each}}
   </section>
 </main>

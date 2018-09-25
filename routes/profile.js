@@ -5,7 +5,7 @@ const router = express.Router()
 const User = require('../models/user.js')
 const uploadCloud = require('../services/cloudinary.js')
 
-// const Yourney = require('../models/yourney')
+const Yourney = require('../models/yourney')
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
@@ -15,11 +15,15 @@ router.get('/', (req, res, next) => {
     return res.redirect('/auth/login')
   }
   User.findById(user._id)
-    .populate('addedBy')
-    .then((result) => {
-      const data = { user: result }
-
-      res.render('layout-profile', data)
+    .then((userData) => {
+      Yourney.find({ addedBy: user._id })
+        .then((yourneysData) => {
+          const data = {
+            user: userData,
+            yourneys: yourneysData
+          }
+          res.render('layout-profile', data)
+        })
     })
     .catch(next)
 })
