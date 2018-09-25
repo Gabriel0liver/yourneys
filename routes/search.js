@@ -10,15 +10,31 @@ router.get('/', (req, res, next) => {
   res.render('search')
 })
 
-router.get('/', (req, res, next) => {
+router.get('/results', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login')
   }
-  const { location } = req.body
+  const { location, date, days } = req.query
 
-  Yourney.find({ location: location })
-    .then((result) => {
-      res.render('search-results')
+  // check if you have location, date, days
+  let matchQuery = {}
+  if (location) {
+    matchQuery.location = location
+  }
+  if (date) {
+    matchQuery.date = date
+  }
+  if (days) {
+    matchQuery.days = days
+  }
+
+  Yourney.find(matchQuery)
+    .populate('owner')
+    .then((results) => {
+      const data = {
+        yourneys: results
+      }
+      res.render('search-results', data)
     })
     .catch(next)
 })
