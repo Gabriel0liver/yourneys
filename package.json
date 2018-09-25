@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
     "sass": "node-sass --output-style compressed --source-map true styles/style.scss public/stylesheets/style.css",
-    "sass-watch": "nodemon -e js,json,hbs ./bin/www | node-sass --output-style compressed --source-map true --watch styles/style.scss public/stylesheets/style.css",
+    "sass-watch": "node-sass --output-style compressed --source-map true --watch styles/style.scss public/stylesheets/style.css",
     "seed-yourney": "node ./bin/seed/yourney.js",
     "seed-user": "node ./bin/seed/user.js",
     "postinstall": "npm run sass"

@@ -1,8 +1,8 @@
 <main class="container">
-  <form method="GET" action="/results">
+  <form method="GET" action="/search/results">
     <div class="field">
       <label></label>
-      <input type="text" name="name" value="{{fields.location}}" placeholder="Search city*" class="title-form" maxlength="15" />
+      <input type="text" name="location" value="{{fields.location}}" placeholder="Search city*" class="title-form" maxlength="15" />
     </div>
 
     <div class="field">
@@ -14,7 +14,7 @@
       <label class="option-label">Days</label>
       <div class="option-value">
         <select name="days">
-          <option value="0">select</option>
+          <option value="">select</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

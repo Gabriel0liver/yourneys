@@ -1,18 +1,18 @@
-'use strict'
+'use strict';
 
-const express = require('express')
-const router = express.Router()
-const User = require('../models/user.js')
-const uploadCloud = require('../services/cloudinary.js')
+const express = require('express');
+const router = express.Router();
+const User = require('../models/user.js');
+const uploadCloud = require('../services/cloudinary.js');
 
-const Yourney = require('../models/yourney')
+const Yourney = require('../models/yourney');
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/', (req, res, next) => {
-  const user = req.session.currentUser
-  console.log(user)
+  const user = req.session.currentUser;
+  console.log(user);
   if (!req.session.currentUser) {
-    return res.redirect('/auth/login')
+    return res.redirect('/auth/login');
   }
   User.findById(user._id)
     .then((userData) => {
@@ -21,47 +21,47 @@ router.get('/', (req, res, next) => {
           const data = {
             user: userData,
             yourneys: yourneysData
-          }
-          res.render('layout-profile', data)
-        })
+          };
+          res.render('layout-profile', data);
+        });
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 router.get('/edit', (req, res, next) => {
-  const user = req.session.currentUser
+  const user = req.session.currentUser;
   if (!req.session.currentUser) {
-    return res.redirect('/auth/login')
+    return res.redirect('/auth/login');
   }
   User.findById(user._id)
     .then((result) => {
-      const data = { user: result }
+      const data = { user: result };
 
-      res.render('profile-edit', data)
+      res.render('profile-edit', data);
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 router.post('/edit', uploadCloud.single('profilepic'), (req, res, next) => {
-  const user = req.session.currentUser
+  const user = req.session.currentUser;
   if (!req.session.currentUser) {
-    return res.redirect('/auth/login')
+    return res.redirect('/auth/login');
   }
-  const { username, description } = req.body
-  const profilepic = req.file.url
+  const { username, description } = req.body;
+  const profilepic = req.file.url;
   if (!username || !description) {
-    req.flash('yourney-form-error', 'Please fill the fields')
-    req.flash('yourney-form-data', { username, description })
-    return res.redirect('/profile/edit')
+    req.flash('yourney-form-error', 'Please fill the fields');
+    req.flash('yourney-form-data', { username, description });
+    return res.redirect('/profile/edit');
   }
-  const update = { username, description, profilepic }
+  const update = { username, description, profilepic };
   User.findByIdAndUpdate(user._id, update, { new: true })
     .then((result) => {
-      req.session.currentUser = result
-      res.redirect('/profile')
+      req.session.currentUser = result;
+      res.redirect('/profile');
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 // router.get('/profile', (req, res, next) => {
 //   const id = req.params.id
@@ -78,4 +78,4 @@ router.post('/edit', uploadCloud.single('profilepic'), (req, res, next) => {
 //     .catch(next)
 // })
 
-module.exports = router
+module.exports = router;

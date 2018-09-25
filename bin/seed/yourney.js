@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-require('dotenv').config()
+require('dotenv').config();
 
-const mongoose = require('mongoose')
-const data = require('../../data/yourneys')
+const mongoose = require('mongoose');
+const data = require('../../data/yourneys');
 
-const Yourney = require('../../models/yourney.js')
+const Yourney = require('../../models/yourney.js');
 
 mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
@@ -28,18 +28,18 @@ mongoose.connect(process.env.MONGODB_URI, {
 //   })
 
   .then(() => {
-    console.log('Connected to Mongo!')
-    return Yourney.remove({})
+    console.log('Connected to Mongo!');
+    return Yourney.remove({});
   })
   .then(() => {
     // user1 = users.find();
-    console.log('Empty db')
-    return Yourney.insertMany(data)
+    console.log('Empty db');
+    return Yourney.insertMany(data);
   })
   .then((results) => {
-    console.log('You have some yourneys', results.length)
-    mongoose.connection.close()
+    console.log('You have some yourneys', results.length);
+    mongoose.connection.close();
   })
   .catch((error) => {
-    console.log('There is a problem', error)
-  })
+    console.log('There is a problem', error);
+  });
