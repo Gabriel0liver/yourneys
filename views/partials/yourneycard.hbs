@@ -11,8 +11,15 @@
     {{/if}}
     <p class="snippet">{{this.snippet}}</p>
     <a href="/yourney/{{this._id}}" class="see-more">+</a>
-    <button type="submit" class="icon icon-heart-o"></button>
-    <button type="submit" class="icon icon-share"></button>
+    {{#if this.favoritedBy}}
+      <form method="POST" action="/yourney/{{this.id}}/removefav">
+        <button type="submit" class="icon icon-heart"></button>
+      </form>
+      {{else}}
+      <form action="/yourney/{{this.id}}/fav" method="POST">
+        <button type="submit" class="icon icon-heart-o"></button>
+      </form>
+    {{/if}}
     {{#if this.addedBy}}
       <form action="/yourney/{{this.id}}/remove" method="POST">
         <button type="submit" class="button add">Remove</button>

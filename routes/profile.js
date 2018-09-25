@@ -63,6 +63,26 @@ router.post('/edit', uploadCloud.single('profilepic'), (req, res, next) => {
     .catch(next);
 });
 
+router.get('/favorite', (req, res, next) => {
+  const user = req.session.currentUser;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  Yourney.findById(user._id)
+    .then((userData) => {
+      Yourney.find({ favoritedBy: user._id })
+        .populate('favoritedBy')
+        .then((yourneysData) => {
+          const data = {
+            user: userData,
+            yourneys: yourneysData
+          };
+          res.render('favorite', data);
+        });
+    })
+    .catch(next);
+});
+
 // router.get('/profile', (req, res, next) => {
 //   const id = req.params.id
 //   const user = req.session.currentUser._id

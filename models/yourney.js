@@ -41,6 +41,10 @@ const yourneySchema = new Schema({
   addedBy: [{
     type: ObjectId,
     ref: 'User'
+  }],
+  favoritedBy: [{
+    type: ObjectId,
+    ref: 'User'
   }]
 });
 

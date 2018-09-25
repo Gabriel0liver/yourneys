@@ -2,9 +2,15 @@
   <section id="yourney-details">
     <h2>{{yourney.name}}</h2>
     <div class="details-link">
-      <form method="POST" action="/yourney/{{yourney.id}}/fav" >
-        <button type="submit" class="icon icon-heart-o"></button>
-      </form>
+      {{#if yourney.favoritedBy}}
+        <form  action="/yourney/{{yourney.id}}/removefav" method="POST">
+          <button type="submit" class="icon icon-heart"></button>
+        </form>
+        {{else}}
+        <form action="/yourney/{{yourney.id}}/fav" method="POST">
+          <button type="submit" class="icon icon-heart-o"></button>
+        </form>
+      {{/if}}
       <form method="POST" action="/yourney/{{yourney.id}}/share" >
         <button type="submit" class="icon icon-share"></button>
       </form>

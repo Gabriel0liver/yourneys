@@ -78,4 +78,28 @@ router.post('/:id/remove', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/:id/fav', (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.session.currentUser._id;
+
+  Yourney.findByIdAndUpdate(id, { $push: { favoritedBy: userId } }, { new: true })
+    .then((result) => {
+      console.log(result);
+      res.redirect(`/profile/favorite`);
+    })
+    .catch(next);
+});
+
+router.post('/:id/removefav', (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.session.currentUser._id;
+
+  Yourney.findByIdAndUpdate(id, { $pull: { favoritedBy: userId } }, { new: true })
+    .then((result) => {
+      console.log(result);
+      res.redirect(`/profile/favorite`);
+    })
+    .catch(next);
+});
+
 module.exports = router;

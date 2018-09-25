@@ -17,6 +17,7 @@ const profileRouter = require('./routes/profile');
 const yourneyRouter = require('./routes/yourney');
 const searchRouter = require('./routes/search');
 const cityRouter = require('./routes/cities');
+// const favoriteRouter = require('./routes/favorite');
 
 const app = express();
 
@@ -62,6 +63,7 @@ app.use('/profile', profileRouter);
 app.use('/yourney', yourneyRouter);
 app.use('/search', searchRouter);
 app.use('/city', cityRouter);
+// app.use('/favorite', favoriteRouter);
 
 // -- 404 and error handler
 
