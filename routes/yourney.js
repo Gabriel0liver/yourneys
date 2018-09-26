@@ -77,6 +77,24 @@ router.post('/:id/remove', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/:id/done', (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.session.currentUser._id;
+
+  Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true })
+    .then((result) => {
+      console.log(result);
+      res.redirect(`/profile`);
+    })
+    .then((result) => {
+      Yourney.findByIdAndUpdate(id, { $push: { doneBy: userId } }, { new: true });
+      console.log(result);
+      res.redirect(`/profile`);
+    })
+
+    .catch(next);
+});
+
 router.post('/:id/fav', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;

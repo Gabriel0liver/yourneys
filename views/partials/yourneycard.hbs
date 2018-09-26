@@ -21,8 +21,11 @@
       </form>
     {{/if}}
     {{#if this.addedBy}}
+      <form action="/yourney/{{this.id}}/done" method="POST">
+        <button type="submit" class="button done">Done</button>
+      </form>
       <form action="/yourney/{{this.id}}/remove" method="POST">
-        <button type="submit" class="button add">Remove</button>
+        <button type="submit" class="button remove">Remove</button>
       </form>
       {{else}}
       <form action="/yourney/{{this.id}}/add" method="POST">

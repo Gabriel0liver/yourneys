@@ -45,6 +45,10 @@ const yourneySchema = new Schema({
   favoritedBy: [{
     type: ObjectId,
     ref: 'User'
+  }],
+  doneBy: [{
+    type: ObjectId,
+    ref: 'User'
   }]
 });
 

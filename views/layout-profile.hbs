@@ -28,6 +28,13 @@
       {{/each}}
     </ul>
 
+    <h3>Completed Yourneys</h3>
+    <ul>
+      {{#each doneYourneys}}
+        {{> yourneycard this}}
+      {{/each}}
+    </ul>
+
 {{!--     
       <h3>Upcoming Yourneys</h3>
       <ul>
