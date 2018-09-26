@@ -1,5 +1,5 @@
 # Project Name
-> YOURNEYS
+> YOUrneys
 
 ## Description
 
