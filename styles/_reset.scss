@@ -13,4 +13,9 @@ body {
   &.pushed{
     transform:translateX(-150px);
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
 }
