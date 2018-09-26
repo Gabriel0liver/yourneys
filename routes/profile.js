@@ -17,8 +17,9 @@ router.get('/', (req, res, next) => {
   const promiseUser = User.findById(user._id);
   const promiseUpcomingYourneys = Yourney.find({ addedBy: user._id });
   const promiseCreatedYourneys = Yourney.find({ owner: user._id });
+  const promiseDoneYourneys = Yourney.find({ doneBy: user._id });
 
-  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
+  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys, promiseDoneYourneys])
     .then((results) => {
       const data = {
         user: results[0],
@@ -94,8 +95,9 @@ router.get('/:id', (req, res, next) => {
   const promiseUser = User.findById(id);
   const promiseUpcomingYourneys = Yourney.find({ addedBy: id });
   const promiseCreatedYourneys = Yourney.find({ owner: id });
+  const promiseDoneYourneys = Yourney.find({ doneBy: id });
 
-  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
+  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys, promiseDoneYourneys])
     .then((results) => {
       const data = {
         user: results[0],

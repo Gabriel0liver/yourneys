@@ -1,0 +1,12 @@
+<main class="container">
+
+  <div class="search-bar" onclick="location.href='/search'">
+      <p> <span class="icon icon-search"></span> Search</p>
+  </div>
+
+  <ul class="explore-cards">
+    {{#each yourneys}}
+      {{> yourneycard this}}
+    {{/each}}
+  </ul>
+</main>

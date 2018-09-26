@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Yourney = require('../models/yourney.js');
+
 // const ObjectId = require('mongoose').Types.ObjectId
 
 router.get('/create', (req, res, next) => {
@@ -80,18 +81,13 @@ router.post('/:id/remove', (req, res, next) => {
 router.post('/:id/done', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  const promisePull = Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true });
+  const promisePush = Yourney.findByIdAndUpdate(id, { $push: { doneBy: userId } }, { new: true });
 
-  Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true })
-    .then((result) => {
-      console.log(result);
+  Promise.all([promisePush, promisePull])
+    .then((results) => {
       res.redirect(`/profile`);
     })
-    .then((result) => {
-      Yourney.findByIdAndUpdate(id, { $push: { doneBy: userId } }, { new: true });
-      console.log(result);
-      res.redirect(`/profile`);
-    })
-
     .catch(next);
 });
 
