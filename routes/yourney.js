@@ -22,18 +22,17 @@ router.post('/create', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
-  console.log(req.body);
   const owner = req.session.currentUser._id;
-  let { date, name, snippet, description, location, days } = req.body;
+  let { name, snippet, description, location, days } = req.body;
   if (!days || !name || !snippet || !description || !location) {
     req.flash('yourney-form-error', 'Mandatory fields!');
-    req.flash('yourney-form-data', { date, name, snippet, description, location, days });
+    req.flash('yourney-form-data', { name, snippet, description, location, days });
     return res.redirect('/yourney/create');
   }
 
   // normalize data
   location = location.toLowerCase();
-  const yourney = new Yourney({ date, name, snippet, description, location, days, owner });
+  const yourney = new Yourney({ name, snippet, description, location, days, owner });
   yourney.save()
     .then(() => {
       res.redirect(`/yourney/${yourney.id}`);

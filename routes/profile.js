@@ -13,12 +13,6 @@ router.get('/', (req, res, next) => {
     return res.redirect('/auth/login');
   }
   const user = req.session.currentUser;
-  // const id = req.params.id;
-  // var otherUser = mongoose.Types.ObjectId(id);
-  // var currentUser = mongoose.Types.ObjectId(user._id);
-  // if (otherUser.equals(currentUser)) {
-  //   user.isMyProfile = true;
-  // }
 
   const promiseUser = User.findById(user._id);
   const promiseUpcomingYourneys = Yourney.find({ addedBy: user._id });
@@ -32,33 +26,6 @@ router.get('/', (req, res, next) => {
         createdYourneys: results[2]
       };
       res.render('layout-profile', data);
-    })
-    .catch(next);
-});
-
-router.get('/:id', (req, res, next) => {
-  if (!req.session.currentUser) {
-    return res.redirect('/auth/login');
-  }
-  const id = req.params.id;
-  // var otherUser = mongoose.Types.ObjectId(id);
-  // var currentUser = mongoose.Types.ObjectId(user._id);
-  // if (otherUser.equals(currentUser)) {
-  //   user.isMyProfile = true;
-  // }
-
-  const promiseUser = User.findById(id);
-  const promiseUpcomingYourneys = Yourney.find({ addedBy: id });
-  const promiseCreatedYourneys = Yourney.find({ owner: id });
-
-  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
-    .then((results) => {
-      const data = {
-        user: results[0],
-        upcomingYourneys: results[1],
-        createdYourneys: results[2]
-      };
-      res.render('other-user', data);
     })
     .catch(next);
 });
@@ -118,33 +85,26 @@ router.get('/favorite', (req, res, next) => {
     .catch(next);
 });
 
-// other users profileeee
+router.get('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const id = req.params.id;
 
-// router.get('/:id', (req, res, next) => {
-//   const id = req.params.id;
-//   if (!req.session.currentUser) {
-//     return res.redirect('/auth/login');
-//   }
-//   User.findById(id)
-//     .then((userData) => {
-//       const data = { user: userData };
-//       res.render('other-profile', data);
-//     })
-//     .catch(next);
-// });
-// router.get('/profile', (req, res, next) => {
-//   const id = req.params.id
-//   const user = req.session.currentUser._id
-//   const yourney = req.yourney.id
-//   Yourney.findById(id, { $filter: { input: [yourney], as: addedBy(user.id) } })
-//     .then((result) => {
-//       console.log(result)
-//       const data = {
-//         yourney: result
-//       }
-//       res.render('layout-profile', data)
-//     })
-//     .catch(next)
-// })
+  const promiseUser = User.findById(id);
+  const promiseUpcomingYourneys = Yourney.find({ addedBy: id });
+  const promiseCreatedYourneys = Yourney.find({ owner: id });
+
+  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
+    .then((results) => {
+      const data = {
+        user: results[0],
+        upcomingYourneys: results[1],
+        createdYourneys: results[2]
+      };
+      res.render('other-user', data);
+    })
+    .catch(next);
+});
 
 module.exports = router;
