@@ -23,6 +23,9 @@
           <button type="submit" class="button add">Add</button>
         </form>
       {{/if}}
+      <form action="/yourney/{{yourney.id}}/delete" method="POST">
+        <button type="submit" class="button delete">Delete</button>
+      </form>
     </div>
     <p class="owner">Created by <a href="/profile/{{yourney.owner.id}}" class="name-owner">{{yourney.owner.username}}</a></p>
     <p class="location">{{yourney.location}}</p>

@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Yourney = require('../models/yourney.js');
-// const ObjectId = require('mongoose').Types.ObjectId
+const ObjectId = require('mongoose').Types.ObjectId;
 
 router.get('/create', (req, res, next) => {
   if (!req.session.currentUser) {
@@ -97,6 +97,20 @@ router.post('/:id/removefav', (req, res, next) => {
     .then((result) => {
       console.log(result);
       res.redirect(`/profile/favorite`);
+    })
+    .catch(next);
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+
+  if (!ObjectId.isValid(id)) {
+    return res.redirect('/profile');
+  }
+
+  Yourney.remove({ _id: id })
+    .then(() => {
+      res.redirect('/profile');
     })
     .catch(next);
 });
