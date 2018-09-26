@@ -24,7 +24,8 @@ router.get('/', (req, res, next) => {
       const data = {
         user: results[0],
         upcomingYourneys: results[1],
-        createdYourneys: results[2]
+        createdYourneys: results[2],
+        doneYourneys: results[3]
       };
       res.render('layout-profile', data);
     })
