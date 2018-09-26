@@ -4,30 +4,61 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 const uploadCloud = require('../services/cloudinary.js');
+// const mongoose = require('mongoose');
 
 const Yourney = require('../models/yourney');
-// const ObjectId = require('mongoose').Types.ObjectId;
-// it should be /:id
+
 router.get('/', (req, res, next) => {
-  const user = req.session.currentUser;
-  // const profileId = req.params.id;
-  // if (user._id === profileId) {
-  //   user.isMyProfile = true;
-  // }
-  console.log(user);
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
-  User.findById(user._id)
-    .then((userData) => {
-      Yourney.find({ addedBy: user._id })
-        .then((yourneysData) => {
-          const data = {
-            user: userData,
-            yourneys: yourneysData
-          };
-          res.render('layout-profile', data);
-        });
+  const user = req.session.currentUser;
+  // const id = req.params.id;
+  // var otherUser = mongoose.Types.ObjectId(id);
+  // var currentUser = mongoose.Types.ObjectId(user._id);
+  // if (otherUser.equals(currentUser)) {
+  //   user.isMyProfile = true;
+  // }
+
+  const promiseUser = User.findById(user._id);
+  const promiseUpcomingYourneys = Yourney.find({ addedBy: user._id });
+  const promiseCreatedYourneys = Yourney.find({ owner: user._id });
+
+  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
+    .then((results) => {
+      const data = {
+        user: results[0],
+        upcomingYourneys: results[1],
+        createdYourneys: results[2]
+      };
+      res.render('layout-profile', data);
+    })
+    .catch(next);
+});
+
+router.get('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const id = req.params.id;
+  // var otherUser = mongoose.Types.ObjectId(id);
+  // var currentUser = mongoose.Types.ObjectId(user._id);
+  // if (otherUser.equals(currentUser)) {
+  //   user.isMyProfile = true;
+  // }
+
+  const promiseUser = User.findById(id);
+  const promiseUpcomingYourneys = Yourney.find({ addedBy: id });
+  const promiseCreatedYourneys = Yourney.find({ owner: id });
+
+  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys])
+    .then((results) => {
+      const data = {
+        user: results[0],
+        upcomingYourneys: results[1],
+        createdYourneys: results[2]
+      };
+      res.render('other-user', data);
     })
     .catch(next);
 });
