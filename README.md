@@ -19,6 +19,7 @@ Yourneys is a platform for travelers to discover cities through customized journ
 - **profile-upcoming-yourneys** -my upcoming yourneys
 - **create-yourney** - As I user I want to be able to create and edit yourneys for other users
 - **edit** - As I user I want to edit yourneys I've created so that I can fix mistakes
+- **delete yourney** - As a user I want to delete yourneys I've created so they are not shared anymore.
 
 ## MVP
 
