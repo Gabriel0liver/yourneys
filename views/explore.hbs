@@ -1,0 +1,12 @@
+<main class="container">
+
+  <div class="search-bar" onclick="location.href='/search'">
+      <input type="text" name="username" placeholder="search" />
+  </div>
+
+  <ul class="explore-cards">
+    {{#each yourneys}}
+      {{> yourneycard this}}
+    {{/each}}
+  </ul>
+</main>
