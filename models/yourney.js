@@ -49,7 +49,10 @@ const yourneySchema = new Schema({
   doneBy: [{
     type: ObjectId,
     ref: 'User'
-  }]
+  }],
+  img: {
+    type: String
+  }
 });
 
 const Yourney = mongoose.model('Yourney', yourneySchema);

@@ -1,4 +1,5 @@
-<main class="container">
+<img src="{{yourney.img}}" alt="A photo of the yourney" class="photo-city-collection">
+<main class="container city-collection">
   <section id="yourney-details">
     <h2>{{yourney.name}}</h2>
     <div class="details-link">
@@ -25,6 +26,9 @@
       {{/if}}
       <form action="/yourney/{{yourney.id}}/delete" method="POST">
         <button type="submit" class="button delete">Delete</button>
+      </form>
+      <form action="/yourney/{{yourney.id}}/edit" method="POST">
+        <button type="submit" class="button edit">Edit</button>
       </form>
     </div>
     <p class="owner">Created by <a href="/profile/{{yourney.owner.id}}" class="name-owner">{{yourney.owner.username}}</a></p>
