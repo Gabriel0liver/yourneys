@@ -6,34 +6,22 @@
     <h2>{{yourney.name}}</h2>
     <div class="details-link">
       {{#if yourney.favoritedBy}}
-        <form  action="/yourney/{{yourney.id}}/removefav" method="POST">
+        <form  action="/yourney/{{yourney.id}}/removefav" method="POST" class="fav">
           <button type="submit" class="icon icon-heart"></button>
         </form>
         {{else}}
-        <form action="/yourney/{{yourney.id}}/fav" method="POST">
+        <form action="/yourney/{{yourney.id}}/fav" method="POST" class="fav">
           <button type="submit" class="icon icon-heart-o"></button>
         </form>
       {{/if}}
-      <form method="POST" action="/yourney/{{yourney.id}}/share" >
-        <button type="submit" class="icon icon-share"></button>
-      </form>
       {{#if userAdded}}
-        <form action="/yourney/{{yourney.id}}/remove" method="POST">
-          <button type="submit" class="button add">Remove</button>
+        <form action="/yourney/{{yourney.id}}/remove" method="POST" class="button remove">
+          <button type="submit">Remove</button>
         </form>
         {{else}}
-        <form action="/yourney/{{yourney.id}}/add" method="POST">
-          <button type="submit" class="button add">Add</button>
+        <form action="/yourney/{{yourney.id}}/add" method="POST" class="button add">
+          <button type="submit">Add</button>
         </form>
-      {{/if}}
-      {{#if userOwner}}
-      <form action="/yourney/{{yourney.id}}/delete" method="POST">
-        <button type="submit" class="button delete">Delete</button>
-      </form>
-      <div class="edit-profile">
-        <a href="/yourney/{{yourney.id}}/edit" class="button edit">Edit</a>
-      </div>
-      {{else}}
       {{/if}}
     </div>
     <p class="owner">Created by <a href="/profile/{{yourney.owner.id}}" class="name-owner">{{yourney.owner.username}}</a></p>
@@ -41,5 +29,17 @@
     <p class="days">{{yourney.days}} days</p>
     <p class="date">{{yourney.date}}</p>
     <p class="description">{{yourney.description}}</p>
+    
   </section>
+  {{#if userOwner}}
+  <div>
+    <div class="edit-profile button edit">
+      <a href="/yourney/{{yourney.id}}/edit">Edit</a>
+    </div>
+    <form action="/yourney/{{yourney.id}}/delete" method="POST" class="button delete">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+  {{else}}
+  {{/if}}
 </main>

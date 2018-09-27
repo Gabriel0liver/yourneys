@@ -28,3 +28,17 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .home-cards {
+    .city-card {
+      margin-right: 8px;
+  
+      img { 
+        width: 366px;
+        height: 210px;
+      }
+    }
+  }
+
+}

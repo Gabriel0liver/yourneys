@@ -14,21 +14,21 @@
     <h3>About Me</h3>
     <p>{{user.description}}</p>
 
-    <h3>Upcoming Yourneys</h3>
+    <h3 class="sections">Upcoming Yourneys</h3>
     <ul>
       {{#each upcomingYourneys}}
         {{> yourneycard this}}
       {{/each}}
     </ul> 
 
-    <h3>Created Yourneys</h3>
+    <h3 class="sections">Created Yourneys</h3>
     <ul>
       {{#each createdYourneys}}
         {{> yourneycard this}}
       {{/each}}
     </ul>
 
-    <h3>Completed Yourneys</h3>
+    <h3 class="sections">Completed Yourneys</h3>
     <ul>
       {{#each doneYourneys}}
         {{> yourneycard this}}
