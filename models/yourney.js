@@ -28,7 +28,7 @@ const yourneySchema = new Schema({
     lowercase: true
   },
   date: {
-    type: DateOnly
+    type: Date
   },
   days: {
     type: String,
