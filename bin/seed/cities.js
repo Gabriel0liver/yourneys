@@ -17,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI, {
     return City.remove({});
   })
   .then(() => {
-    // user1 = users.find();
     console.log('Empty db');
     return City.insertMany(data);
   })

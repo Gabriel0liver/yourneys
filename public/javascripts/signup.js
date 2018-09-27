@@ -3,7 +3,6 @@
 const main = () => {
   const input = document.querySelector('input[name="username"]');
   let button = document.getElementById('signup-button');
-  console.log(button);
   button.disabled = false;
   let message;
 

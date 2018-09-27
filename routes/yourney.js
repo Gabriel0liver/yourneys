@@ -134,7 +134,6 @@ router.post('/:id/add', (req, res, next) => {
   const userId = req.session.currentUser._id;
   Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } }, { new: true })
     .then((result) => {
-      console.log(result);
       res.redirect(`/yourney/${id}`);
     })
     .catch(next);
@@ -146,7 +145,6 @@ router.post('/:id/remove', (req, res, next) => {
 
   Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true })
     .then((result) => {
-      console.log(result);
       res.redirect(`/profile`);
     })
     .catch(next);
@@ -171,7 +169,6 @@ router.post('/:id/fav', (req, res, next) => {
 
   Yourney.findByIdAndUpdate(id, { $push: { favoritedBy: userId } }, { new: true })
     .then((result) => {
-      console.log(result);
       res.redirect(`/profile/favorite`);
     })
     .catch(next);
@@ -183,7 +180,6 @@ router.post('/:id/removefav', (req, res, next) => {
 
   Yourney.findByIdAndUpdate(id, { $pull: { favoritedBy: userId } }, { new: true })
     .then((result) => {
-      console.log(result);
       res.redirect(`/profile/favorite`);
     })
     .catch(next);

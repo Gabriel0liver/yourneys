@@ -46,13 +46,3 @@ p {
 input, button {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
-
-// use with @include inverse()
-// @mixin inverse() {
-//   color: $color-inverse-fg;
-//   background-color: $color-inverse-bg;
-
-//   a {
-//     color: $color-inverse-link;
-//   }
-// }

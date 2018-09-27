@@ -12,27 +12,11 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
 })
-
-// Yourney.remove({})
-//   .then(() => {
-//     return Yourney.create(data)
-//   })
-//   .then((data) => {
-//     console.log('Data inserted')
-//   })
-//   .then(() => {
-//     mongoose.connection.close()
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
-
   .then(() => {
     console.log('Connected to Mongo!');
     return Yourney.remove({});
   })
   .then(() => {
-    // user1 = users.find();
     console.log('Empty db');
     return Yourney.insertMany(data);
   })

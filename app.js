@@ -17,7 +17,6 @@ const profileRouter = require('./routes/profile');
 const yourneyRouter = require('./routes/yourney');
 const searchRouter = require('./routes/search');
 const cityRouter = require('./routes/cities');
-// const favoriteRouter = require('./routes/favorite');
 
 const app = express();
 
@@ -31,13 +30,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
-// hbs.registerHelper('pending', function (conditional, options) {
-//   if (conditional === 'pending') {
-//     return options.fn(this);
-//   } else {
-//     return options.inverse(this);
-//   }
-// });
 
 app.use(session({
   store: new MongoStore({
@@ -82,7 +74,6 @@ app.use('/profile', profileRouter);
 app.use('/yourney', yourneyRouter);
 app.use('/search', searchRouter);
 app.use('/city', cityRouter);
-// app.use('/favorite', favoriteRouter);
 
 // -- 404 and error handler
 

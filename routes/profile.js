@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 const uploadCloud = require('../services/cloudinary.js');
-// const mongoose = require('mongoose');
 
 const Yourney = require('../models/yourney');
 
