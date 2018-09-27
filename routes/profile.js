@@ -178,9 +178,9 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
 
   const promiseUser = User.findById(id);
-  const promiseUpcomingYourneys = Yourney.find({ addedBy: id });
-  const promiseCreatedYourneys = Yourney.find({ owner: id });
-  const promiseDoneYourneys = Yourney.find({ doneBy: id });
+  const promiseUpcomingYourneys = Yourney.find({ addedBy: id }).populate('owner');
+  const promiseCreatedYourneys = Yourney.find({ owner: id }).populate('owner');
+  const promiseDoneYourneys = Yourney.find({ doneBy: id }).populate('owner');
 
   Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys, promiseDoneYourneys])
     .then((results) => {
