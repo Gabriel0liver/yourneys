@@ -34,7 +34,7 @@ router.get('/results', (req, res, next) => {
   Yourney.find(matchQuery)
     .populate('owner')
     .then((results) => {
-      results.map((yourney) => {
+      results.forEach((yourney) => {
         yourney.userAdded = false;
         if (yourney.addedBy) {
           const addedBy = yourney.addedBy.filter((item) => {
