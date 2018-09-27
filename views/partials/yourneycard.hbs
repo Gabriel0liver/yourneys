@@ -1,31 +1,31 @@
 <li class="yourney-card">
-  <div>
-    <h3><a href="/yourney/{{this._id}}">{{this.name}}</a></h3>
+  <div onclick="location.href='/yourney/{{this.id}}'">
+    <h3>{{this.name}}</h3>
     <p class="owner">Created by <a href="/profile/{{this.owner.id}}" class="name-owner">{{this.owner.username}}</a></p>
     <p class="location">{{this.location}}</p>
     <p class="duration">{{this.days}} days</p>
     
-    <p class="snippet">{{this.snippet}}</p>
-    <a href="/yourney/{{this._id}}" class="see-more">+</a>
+    <p class="snippet">{{this.snippet}}...</p>
+    <a href="/yourney/{{this._id}}" class="see-more">see more</a>
     {{#if this.userFavorite}}
-      <form method="POST" action="/yourney/{{this.id}}/removefav">
+      <form method="POST" action="/yourney/{{this.id}}/removefav" class="fav">
         <button type="submit" class="icon icon-heart"></button>
       </form>
       {{else}}
-      <form action="/yourney/{{this.id}}/fav" method="POST">
+      <form action="/yourney/{{this.id}}/fav" method="POST" class="fav">
         <button type="submit" class="icon icon-heart-o"></button>
       </form>
     {{/if}}
     {{#if this.userAdded}}
-      <form action="/yourney/{{this.id}}/done" method="POST">
-        <button type="submit" class="button done">Done</button>
+      <form action="/yourney/{{this.id}}/done" method="POST" class="button done">
+        <button type="submit">Done</button>
       </form>
-      <form action="/yourney/{{this.id}}/remove" method="POST">
-        <button type="submit" class="button remove">Remove</button>
+      <form action="/yourney/{{this.id}}/remove" method="POST" class="button remove">
+        <button type="submit" >Remove</button>
       </form>
       {{else}}
-      <form action="/yourney/{{this.id}}/add" method="POST">
-        <button type="submit" class="button add">Add</button>
+      <form action="/yourney/{{this.id}}/add" method="POST" class="button add">
+        <button type="submit">Add</button>
       </form>
     {{/if}}
   </div>
