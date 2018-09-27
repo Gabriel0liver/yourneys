@@ -10,16 +10,20 @@ Yourneys is a platform for travelers to discover cities through customized journ
 - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault 
 - **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
 - **sign up** - As a user I want to sign up on the webpage so that I can see all the Yourney or create a new Yourney
-- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account
-- **logout** - As a user I want to be able to log out from the webpage in case other user wants to log in
-- **Homepage-cities** - As I user I want to be able to see all the cities so that I can find Yourneys in that cities
-- **yourneys** - As I user I want to be able to see yourneys so that I can choose one
-- **yourney-details** - As I user I want to be able to see what the yourney is about
-- **add-yourney** - As I user I want to be able to add a yourney so that I make the journey later
-- **profile-upcoming-yourneys** -my upcoming yourneys
-- **create-yourney** - As I user I want to be able to create and edit yourneys for other users
-- **edit** - As I user I want to edit yourneys I've created so that I can fix mistakes
-- **delete yourney** - As a user I want to delete yourneys I've created so they are not shared anymore.
+- **login** - As a user I want to log in on the webpage so that I can get back into my account
+- **logout** - As a user I want to log out from the webpage in case other user wants to log in
+- **Homepage-cities** - As a user I want to see all the cities so that I can find Yourneys in that cities suggested by the app
+- **yourneys** - As a user I want to see yourneys so that I can choose one
+- **details-yourney** - As a user I want to see what the yourney is about
+- **create-yourney** - As I user I want to be able to create yourneys for other users
+- **delete yourney** - As a user I want to delete yourneys I've created so they are not shared anymore
+- **edit-yourney** - As a user I want to edit yourneys I've created so that I can fix mistakes or change stuff
+- **add-yourney** - As a user I want to add other people's yourneys so that I make the journey later
+- **profile-upcoming-yourneys** - As a user I want to see the yourneys I've added so I can easily access them from my profile
+- **profile-done-yourney** - As a user I want to change my yourney cards from upcoming to done when I complete them so I can keep track of my yourneys
+- **profile-done-yourney** - As a user I want to keep track of the yourneys I've created for other users so I avoid repeating myself
+- **check-others-profile** - As a user I want to see other people's profile so I can see what other yourneys they've created
+- **display-only-yourneys-created** - As a user I want other people to see only the yourneys I've created so the rest of my profile remains private
 
 ## MVP
 
