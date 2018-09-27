@@ -178,16 +178,13 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
 
   const promiseUser = User.findById(id);
-  const promiseUpcomingYourneys = Yourney.find({ addedBy: id }).populate('owner');
   const promiseCreatedYourneys = Yourney.find({ owner: id }).populate('owner');
-  const promiseDoneYourneys = Yourney.find({ doneBy: id }).populate('owner');
 
-  Promise.all([promiseUser, promiseUpcomingYourneys, promiseCreatedYourneys, promiseDoneYourneys])
+  Promise.all([promiseUser, promiseCreatedYourneys])
     .then((results) => {
       const data = {
         user: results[0],
-        upcomingYourneys: results[1],
-        createdYourneys: results[2]
+        createdYourneys: results[1]
       };
       res.render('other-user', data);
     })
