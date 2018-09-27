@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+const bcrypt = require('bcrypt');
 const uploadCloud = require('../services/cloudinary.js');
+const saltRounds = 10;
 
 const Yourney = require('../models/yourney');
 
@@ -136,6 +138,87 @@ router.post('/edit', uploadCloud.single('profilepic'), (req, res, next) => {
     })
     .catch(next);
 });
+router.get('/settings', (req, res, next) => {
+  const user = req.session.currentUser;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  User.findById(user._id)
+    .then((result) => {
+      const data = { user: result };
+
+      res.render('settings', data);
+    })
+    .catch(next);
+});
+
+router.post('/settings', (req, res, next) => {
+  const user = req.session.currentUser;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const { validPassword, newPassword } = req.body;
+  const currentPassword = user.password;
+
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const oldPassword = bcrypt.hashSync(validPassword, salt);
+
+  if (oldPassword === user.password) {
+    if (!oldPassword || !currentPassword) {
+      req.flash('signup-form-error', 'username and password are mandatory!');
+      req.flash('signup-form-data', { oldPassword, currentPassword });
+      return res.redirect('/profile/settings');
+    }
+
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = bcrypt.hashSync(newPassword, salt);
+
+    if (!bcrypt.compareSync(hashedPassword, currentPassword)) {
+      req.flash('login-error', 'Password is incorrect');
+      return res.redirect('/profile/settings');
+    }
+
+    User.findOneAndUpdate(user._id, { password: hashedPassword }, { new: true })
+      .then((result) => {
+        req.session.currentUser = result;
+        res.redirect('/profile/settings');
+      })
+      .catch(next);
+  } else {
+    res.redirect('/profile/settings');
+  }
+  // .then((results) => {
+  //   if (validPassword.equals(user.password)) {
+  //     password.save();
+  //   }
+  // });
+});
+
+// router.post('/settings', (req, res, next) => {
+//   const { validPassword , newPassword} = req.body;
+//   // const id = req.params.id;
+//    const password = user.password;
+//   // const userId = req.session.currentUser._id;
+//   if (!req.session.currentUser) {
+//     return res.redirect('/auth/login');
+//   }
+
+//   bcrypt.compare(validPassword, password, (err, res) => {
+//     if (validPassword.equals(user.password) {
+
+//     }
+//     //     console.log('wrong');
+//     //   } else {
+//       //     res.redirect();
+//       //   }
+//       // });
+//       // .then((result) => {
+//         //   res.redirect(`/yourney/${id}`);
+//         // })
+//         User.findByIdAndUpdate(password, { $push: { password : newPassword } }, { new: true })
+// // .catch(next);
+
+// });
 
 router.get('/favorite', (req, res, next) => {
   const user = req.session.currentUser;

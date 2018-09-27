@@ -58,6 +58,8 @@ app.use((req, res, next) => {
   if (req.originalUrl === '/yourney/create') app.locals.currentPage.create = true;
   if (req.originalUrl === '/profile/favorite') app.locals.currentPage.favorite = true;
   if (req.originalUrl === '/profile') app.locals.currentPage.profile = true;
+  if (req.originalUrl === '/profile/settings') app.locals.currentPage.settings = true;
+
   next();
 });
 
