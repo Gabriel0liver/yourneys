@@ -3,21 +3,21 @@
   <form method="POST" action="/yourney/create" enctype="multipart/form-data">
     <div class="field">
       <label></label>
-      <input type="text" name="name" value="{{fields.name}}" placeholder="Yourney name" class="title-form" maxlength="15"/>
+      <input type="text" name="name" value="{{fields.name}}" placeholder="Yourney name*" class="title-form" maxlength="15"/>
     </div>
 
     <div class="field">
-      <label>Snippet</label>
+      <label>Snippet*</label>
       <input type="text" name="snippet" placeholder="In one sentence describe your yourney" value="{{fields.snippet}}" />
     </div>
 
     <div class="field">
-      <label>Description</label>
+      <label>Description*</label>
       <input type="text" name="description" value="{{fields.description}}"/>
     </div>
 
     <div class="field">
-      <label>Location</label>
+      <label>Location*</label>
       <input type="text" name="location" placeholder="Barcelona" value="{{fields.location}}"/>
     </div>
 
@@ -27,7 +27,7 @@
     </div> --}}
 
     <div class="field select">
-      <label class="option-label">Days</label>
+      <label class="option-label">Days*</label>
       <div class="option-value">
         <select name="days"> 
           <option value="0">select</option>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="field submit">
-      <button type="submit" class="submit-button">Create</button>
+      <button type="submit" class="submit-button real">Create</button>
     </div>
     {{#if message}}
     <p class="validation">{{message}}</p>

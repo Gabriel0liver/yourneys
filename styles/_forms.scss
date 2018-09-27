@@ -35,11 +35,15 @@ form {
 
   .option-value {
     display: inline;
-    padding: 15px 20px;
-    border: 1px solid $color-black;
-    background-color: lightgrey;
-    color: $color-black;
-    border-radius: 30px;
+
+    select {
+      padding: 8px 13px;
+      border: 1px solid #474646;
+      background-color: $color-bg;
+      color: #474646;
+      border-radius: 30px;
+      display: inline;
+    }
   }
 
   .submit {
@@ -48,17 +52,28 @@ form {
     .submit-button {
       padding: 15px 20px;
       width: 100%;
-      border: 1px solid $color-black;
       border-radius: 30px;
       text-align: center;
-      color: $color-bg;
-      background-color: $color-black;
       cursor: pointer;
       font-size: 20px;
+      background-color: $color-selected;
+      color: $color-bg;
 
       &:disabled {
         background-color: $color-grey;
       }
+
+      &.real {
+        background-color: $color-selected;
+        color: $color-bg;
+      }
+
+      &.link {
+        border: 1px solid $color-selected;
+        background-color: $color-bg;
+        color: $color-selected;
+      }
+
     }
 
     a {

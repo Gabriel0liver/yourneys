@@ -16,6 +16,7 @@
 
   div {
     display: grid;
+    grid : auto-flow dense / 70px 50px 1fr;
   }
 
   h3 {
@@ -43,19 +44,23 @@
   }
 
   .fav {
-    grid-column: 6;
+    grid-column: 5 / 7;
     grid-row: 1;
     font-size: 25px;
+    text-align: center;
   }
 
   .done {
-    grid-column: 6;
+    grid-column: 5 / 7;
     grid-row: 2;
+    width: 100%;
     border: 1px solid $color-black;
+    padding: 0 26px;
     border-radius: 26px;
     text-align: center;
     color: $color-black;
     cursor: pointer;
+    margin-bottom: 5px;
 
     button {
       font-size: 15px;
@@ -63,9 +68,11 @@
   }
 
   .remove {
-    grid-column: 6;
+    grid-column: 5 / 7;
     grid-row: 3;
+    width: 100%;
     border: 1px solid $color-black;
+    padding: 0 26px;
     border-radius: 26px;
     text-align: center;
     color: $color-black;

@@ -15,7 +15,7 @@
 
 
 .header-nav {
-  background-color: $color-bg;
+  background-color: $color-selected;
   overflow: hidden;
   padding: 10px;
   display: flex;
@@ -27,13 +27,14 @@
 
     a {
       text-decoration: none;
-      color: $color-black;
+      color: $color-bg;
     }
   }
 
   p {
     font-size: 20px;
     padding-right: 5px;
+    color: $color-bg;
   }
 
 }
