@@ -9,35 +9,11 @@
     <h3>About Me</h3>
     <p>{{user.description}}</p>
 
-    <h3>Upcoming Yourneys</h3>
-    <ul>
-      {{#each upcomingYourneys}}
-      {{> yourneycard this}}
-      {{/each}}
-    </ul>
-
     <h3>Created Yourneys</h3>
     <ul>
       {{#each createdYourneys}}
       {{> yourneycard this}}
       {{/each}}
     </ul>
-
-    {{!--
-    <h3>Upcoming Yourneys</h3>
-    <ul>
-      {{#each yourneys}}
-      {{> yourneycard this}}
-      {{/each}}
-    </ul> --}}
-    {{!-- {{> upcoming }} --}}
-
-    {{!-- {{#if yourneys}}
-    {{> done}}
-    {{!-- {{/if}} --}}
-
-    {{!-- {{#> created }}
-    {{/created}} --}}
-    {{!-- {{/if}} --}}
   </section>
 </main>

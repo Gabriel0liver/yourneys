@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Yourney = require('../models/yourney.js');
+const yourneyHelper = require('../helpers/yourney');
 const ObjectId = require('mongoose').Types.ObjectId;
 const uploadCloud = require('../services/cloudinary.js');
 
@@ -52,20 +53,21 @@ router.get('/:id', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
+  // @todo check other routes for invalids id
+  if (!ObjectId.isValid(id)) {
+    return next();
+  }
 
   Yourney.findById(id)
     .populate('owner')
     .then((result) => {
-      let userAdded = false;
-      let userOwner = false;
+      // @todo check other routes for no results fuond
+      if (!result) {
+        return next();
+      }
       let userFavorite = false;
       let userDone = false;
-
-      const addedBy = result.addedBy.filter((item) => {
-        return item._id.equals(user._id);
-      });
-      if (addedBy.length) userAdded = true;
-
+      // @todo hepler functions x2
       const favoritedBy = result.favoritedBy.filter((item) => {
         return item._id.equals(user._id);
       });
@@ -76,11 +78,10 @@ router.get('/:id', (req, res, next) => {
       });
       if (doneBy.length) userDone = true;
 
-      if (result.owner.id === user._id) userOwner = true;
       const data = {
         yourney: result,
-        userAdded,
-        userOwner,
+        userAdded: yourneyHelper.didUserAddYourney(user, result),
+        userOwner: result.owner._id.equals(user._id),
         userFavorite,
         userDone
       };
@@ -125,7 +126,8 @@ router.post('/:id/edit', uploadCloud.single('img'), (req, res, next) => {
 
       const update = { name, snippet, description, location, days, img };
       location = location.toLowerCase();
-      Yourney.findByIdAndUpdate(id, update, { new: true })
+      // @todo check other mongoos calls if there's return!!!!!!
+      return Yourney.findByIdAndUpdate(id, update, { new: true })
         .then((result) => {
           res.redirect(`/yourney/${id}`);
         });

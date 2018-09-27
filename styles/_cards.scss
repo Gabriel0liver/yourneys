@@ -5,10 +5,8 @@
 }
 
 .yourney-card {
-  border: 1px solid $color-black;
   padding: 30px;
   list-style: none;
-  border-radius: 50px;
   box-shadow: 0 3px 11px $color-shadow;
   margin-top: 50px;
 
@@ -44,14 +42,38 @@
     text-transform: capitalize;
   }
 
-  .icon-heart-o {
-    grid-column: 5;
-    grid-row: 1;
-  }
-
-  .icon-share {
+  .fav {
     grid-column: 6;
     grid-row: 1;
+    font-size: 25px;
+  }
+
+  .done {
+    grid-column: 6;
+    grid-row: 2;
+    border: 1px solid $color-black;
+    border-radius: 26px;
+    text-align: center;
+    color: $color-black;
+    cursor: pointer;
+
+    button {
+      font-size: 15px;
+    }
+  }
+
+  .remove {
+    grid-column: 6;
+    grid-row: 3;
+    border: 1px solid $color-black;
+    border-radius: 26px;
+    text-align: center;
+    color: $color-black;
+    cursor: pointer;
+
+    button {
+      font-size: 15px;
+    }
   }
 
   .add {
@@ -65,7 +87,12 @@
     color: #FDFFFC;
     background-color: #474646;
     cursor: pointer;
-    font-size: 16px;
+
+
+    button {
+      color: $color-bg;
+      font-size: 15px;
+    }
   }
 
   .duration {
@@ -90,7 +117,8 @@
     grid-column: 6;
     grid-row: 6;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 15px;
     text-align: center;
+    text-decoration: underline;
   }
 }
