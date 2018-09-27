@@ -31,6 +31,13 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
+// hbs.registerHelper('pending', function (conditional, options) {
+//   if (conditional === 'pending') {
+//     return options.fn(this);
+//   } else {
+//     return options.inverse(this);
+//   }
+// });
 
 app.use(session({
   store: new MongoStore({
@@ -47,6 +54,18 @@ app.use(session({
 
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
+  app.locals.currentPage = {
+    index: false,
+    search: false,
+    create: false,
+    favorite: false,
+    profile: false
+  };
+  if (req.originalUrl === '/') app.locals.currentPage.index = true;
+  if (req.originalUrl === '/search') app.locals.currentPage.search = true;
+  if (req.originalUrl === '/yourney/create') app.locals.currentPage.create = true;
+  if (req.originalUrl === '/profile/favorite') app.locals.currentPage.favorite = true;
+  if (req.originalUrl === '/profile') app.locals.currentPage.profile = true;
   next();
 });
 

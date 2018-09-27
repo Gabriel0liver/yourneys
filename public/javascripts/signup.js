@@ -2,6 +2,9 @@
 
 const main = () => {
   const input = document.querySelector('input[name="username"]');
+  let button = document.getElementById('signup-button');
+  console.log(button);
+  button.disabled = false;
   let message;
 
   input.addEventListener('blur', () => {
@@ -14,6 +17,9 @@ const main = () => {
           message = document.createElement('p');
           if (!response.data.unique) {
             message.innerText = 'Username is not unique';
+            button.setAttribute('disabled', 'disabled');
+          } else {
+            button.removeAttribute('disabled');
           }
           input.parentNode.appendChild(message);
         })

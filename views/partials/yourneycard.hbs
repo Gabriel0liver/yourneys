@@ -4,14 +4,10 @@
     <p class="owner">Created by <a href="#" class="name-owner">{{this.owner.username}}</a></p>
     <p class="location">{{this.location}}</p>
     <p class="duration">{{this.days}} days</p>
-    {{!-- {{#if this.date}}
-      <p class="date">Date: {{this.date}}</p>
-      {{else}}
-      <p class="empty">No content</p>
-    {{/if}} --}}
+    
     <p class="snippet">{{this.snippet}}</p>
     <a href="/yourney/{{this._id}}" class="see-more">+</a>
-    {{#if this.favoritedBy}}
+    {{#if this.userFavorite}}
       <form method="POST" action="/yourney/{{this.id}}/removefav">
         <button type="submit" class="icon icon-heart"></button>
       </form>
@@ -20,7 +16,7 @@
         <button type="submit" class="icon icon-heart-o"></button>
       </form>
     {{/if}}
-    {{#if this.addedBy}}
+    {{#if this.userAdded}}
       <form action="/yourney/{{this.id}}/done" method="POST">
         <button type="submit" class="button done">Done</button>
       </form>

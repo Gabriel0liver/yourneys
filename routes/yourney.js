@@ -24,11 +24,14 @@ router.post('/create', uploadCloud.single('img'), (req, res, next) => {
     return res.redirect('/auth/login');
   }
   const owner = req.session.currentUser._id;
+  let img;
   let { name, snippet, description, location, days } = req.body;
-  const img = req.file.url;
+  if (req.file) {
+    img = req.file.url;
+  }
   if (!days || !name || !snippet || !description || !location) {
     req.flash('yourney-form-error', 'Mandatory fields!');
-    req.flash('yourney-form-data', { name, snippet, description, location, days, img });
+    req.flash('yourney-form-data', { name, snippet, description, location, days });
     return res.redirect('/yourney/create');
   }
 
@@ -44,12 +47,38 @@ router.post('/create', uploadCloud.single('img'), (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  console.log(id);
+  const user = req.session.currentUser;
+
   Yourney.findById(id)
     .populate('owner')
     .then((result) => {
+      let userAdded = false;
+      let userOwner = false;
+      let userFavorite = false;
+      let userDone = false;
+
+      const addedBy = result.addedBy.filter((item) => {
+        return item._id.equals(user._id);
+      });
+      if (addedBy.length) userAdded = true;
+
+      const favoritedBy = result.favoritedBy.filter((item) => {
+        return item._id.equals(user._id);
+      });
+      if (favoritedBy.length) userFavorite = true;
+
+      const doneBy = result.doneBy.filter((item) => {
+        return item._id.equals(user._id);
+      });
+      if (doneBy.length) userDone = true;
+
+      if (result.owner.id === user._id) userOwner = true;
       const data = {
-        yourney: result
+        yourney: result,
+        userAdded,
+        userOwner,
+        userFavorite,
+        userDone
       };
       res.render('yourney-details', data);
     })
@@ -77,18 +106,25 @@ router.post('/:id/edit', uploadCloud.single('img'), (req, res, next) => {
   }
 
   let { name, snippet, description, location, days } = req.body;
-  // const img = req.file.url;
-  if (!days || !name || !snippet || !description || !location) {
-    req.flash('yourney-form-error', 'Mandatory fields!');
-    req.flash('yourney-form-data', { name, snippet, description, location, days });
-    return res.redirect(`/yourney/${id}/edit`);
-  }
-
-  const update = { name, snippet, description, location, days, img };
-  location = location.toLowerCase();
-  Yourney.findByIdAndUpdate(id, update, { new: true })
+  let img;
+  Yourney.findById(id)
     .then((result) => {
-      res.redirect(`/yourney/${id}`);
+      img = result.img;
+      if (req.file) {
+        img = req.file.url;
+      }
+      if (!days || !name || !snippet || !description || !location) {
+        req.flash('yourney-form-error', 'Mandatory fields!');
+        req.flash('yourney-form-data', { name, snippet, description, location, days });
+        return res.redirect(`/yourney/${id}/edit`);
+      }
+
+      const update = { name, snippet, description, location, days, img };
+      location = location.toLowerCase();
+      Yourney.findByIdAndUpdate(id, update, { new: true })
+        .then((result) => {
+          res.redirect(`/yourney/${id}`);
+        });
     })
     .catch(next);
 });

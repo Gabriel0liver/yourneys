@@ -64,7 +64,16 @@
     .icon {
       text-decoration: none;
       color: $color-black;
+
+      &.true {
+        color: $color-selected;
+      }
+
+      &.false {
+        color: $color-black;
+      }
     }
+
   }
 
   .icon-profilepic {
@@ -86,11 +95,15 @@
     img {
       width: 100%;
     }
-  }
-}
 
-.selected {
-  color: $color-selected;
+    &.true {
+      border: 2px solid $color-selected;
+    }
+
+    &.false {
+      border: none;
+    }
+  }
 }
 
 // --- main
