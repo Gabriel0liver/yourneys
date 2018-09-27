@@ -49,6 +49,10 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   const user = req.session.currentUser;
 
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+
   Yourney.findById(id)
     .populate('owner')
     .then((result) => {
@@ -132,6 +136,10 @@ router.post('/:id/edit', uploadCloud.single('img'), (req, res, next) => {
 router.post('/:id/add', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+
   Yourney.findByIdAndUpdate(id, { $push: { addedBy: userId } }, { new: true })
     .then((result) => {
       res.redirect(`/yourney/${id}`);
@@ -142,6 +150,9 @@ router.post('/:id/add', (req, res, next) => {
 router.post('/:id/remove', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
 
   Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true })
     .then((result) => {
@@ -153,6 +164,10 @@ router.post('/:id/remove', (req, res, next) => {
 router.post('/:id/done', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+
   const promisePull = Yourney.findByIdAndUpdate(id, { $pull: { addedBy: userId } }, { new: true });
   const promisePush = Yourney.findByIdAndUpdate(id, { $push: { doneBy: userId } }, { new: true });
 
@@ -166,6 +181,9 @@ router.post('/:id/done', (req, res, next) => {
 router.post('/:id/fav', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
 
   Yourney.findByIdAndUpdate(id, { $push: { favoritedBy: userId } }, { new: true })
     .then((result) => {
@@ -177,6 +195,9 @@ router.post('/:id/fav', (req, res, next) => {
 router.post('/:id/removefav', (req, res, next) => {
   const id = req.params.id;
   const userId = req.session.currentUser._id;
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
 
   Yourney.findByIdAndUpdate(id, { $pull: { favoritedBy: userId } }, { new: true })
     .then((result) => {
@@ -187,6 +208,10 @@ router.post('/:id/removefav', (req, res, next) => {
 
 router.post('/:id/delete', (req, res, next) => {
   const id = req.params.id;
+
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
 
   if (!ObjectId.isValid(id)) {
     return res.redirect('/profile');
