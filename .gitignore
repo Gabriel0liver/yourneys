@@ -62,3 +62,7 @@ typings/
 
 public/stylesheets/style.css
 public/stylesheets/style.css.map
+
+# System Files
+.DS_Store
+

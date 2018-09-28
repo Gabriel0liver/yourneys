@@ -1,12 +1,20 @@
 <main class="container">
-    <h3>Change your Password</h3>
-  <form method="POST" action="/profile/settings">
-      <input type="text" name="validPassword" value="" placeholder="Current password" class="title-form" maxlength="15" />
+  <div class="info-site">
+    <h2 class="title">Change your Password</h2>
+  </div>
+  <form method="POST" action="/profile/settings" class="password">
+    <div class="field">
+      <label></label>
+      <input type="text" name="validPassword" value="" placeholder="Current password" maxlength="15" />
+    </div>
+    <div class="field">
+      <label></label>
+      <input type="password" name= "newPassword" value="" placeholder="New password" maxlength="15" />
+    </div>
 
-      <input type="password" name= "newPassword" value="" placeholder="New password" class="title-form" maxlength="15" />
-
-
+    <div class="field submit">
       <button type="submit" class="submit-button">Save</button>
+    </div>
     {{#if message}}
     <p class="validation">{{message}}</p>
     {{/if}}

@@ -4,6 +4,10 @@
 }
 
 form {
+  &.password {
+    margin-top: 50px;
+  }
+
   label {
     display: block;
     margin-bottom: 10px;
