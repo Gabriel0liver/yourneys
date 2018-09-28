@@ -8,10 +8,12 @@ html {
 body {
   margin: 0;
   padding: 0;
-  transition: transform .4s; 
+  transition: all .17s linear;
+  position: relative;
+  right: 0;
 
   &.pushed{
-    transform:translateX(-150px);
+    right: 150px;
   }
 
   ul {
