@@ -12,7 +12,7 @@ const cities = [{
 },
 {
   location: 'Buenos Aires',
-  img: 'https://images.unsplash.com/photo-1528391307346-e088bd279069?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a695bf5f5aa76e3c3fe76461dae146e3&auto=format&fit=crop&w=1868&q=80'
+  img: 'http://comunicacaovip.com.br/wp-content/uploads/2018/02/puente-de-la-mujer-em-puerto-madero-bairro-de-buenos-aires-argentina-anton-petrus-istock-516140410.jpg'
 }];
 
 module.exports = cities;
