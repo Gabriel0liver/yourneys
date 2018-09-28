@@ -176,7 +176,7 @@ router.post('/settings', (req, res, next) => {
     User.findOneAndUpdate({ _id: user._id }, { password: hashedPassword }, { new: true })
       .then((result) => {
         req.session.currentUser = result;
-        res.redirect('/profile/settings');
+        res.redirect('/profile');
       })
       .catch(next);
   } else {
