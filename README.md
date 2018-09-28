@@ -131,6 +131,28 @@ Yourneys details
 
 - GET /profile
   - renders the profile details
+
+- GET /profile/edit
+  - renders the profile details + create form
+
+- POST /profile/edit
+  - renders the profile details + create form
+  - body:
+    - profile pic
+    - username
+    - description
+
+- GET /profile/setting
+  - renders the profile settings + create form
+
+- POST /profile/setting
+  - renders the profile settings + create form
+  - body:
+    - currentPassword
+    - newPassword
+
+- GET /profile/favorite
+  - renders the cards marked as favorites
   
 - GET /yourney?city=<cityName>
   - renders the yourney list for <cityName>
@@ -170,6 +192,33 @@ Yourneys details
       - if added = flash message "already in your list"
   - add to user's list [use findAndUpdate] and flash message "yourney added"
   - redirect to /profile
+
+- POST /yourney/:id/remove
+  - redirects to /auth/login if user is anonymous
+  - body:
+  - validation
+    - id is !valid (next to 404)
+    - NOTE: findById to perform next validations
+      - id !exists (next to 404)
+      - check if is already added 
+      - if added = flash message "already in your list"
+  - remove from user's list [use findAndUpdate]
+  - redirect to /profile
+
+- GET /search
+  - redirects to /auth/login if user is anonymous
+  - renders the search form + create form
+
+- GET /search/results
+  - renders the search results 
+
+- POST /search/results
+  - renders the search results
+  - body:
+    - profile pic
+    - username
+    - description
+
 
 ## Models
 
