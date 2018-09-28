@@ -163,22 +163,17 @@ router.post('/settings', (req, res, next) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const oldPassword = bcrypt.hashSync(validPassword, salt);
 
-  if (oldPassword === user.password) {
-    if (!oldPassword || !currentPassword) {
-      req.flash('signup-form-error', 'username and password are mandatory!');
-      req.flash('signup-form-data', { oldPassword, currentPassword });
-      return res.redirect('/profile/settings');
-    }
+  if (!oldPassword || !currentPassword) {
+    req.flash('signup-form-error', 'username and password are mandatory!');
+    req.flash('signup-form-data', { oldPassword, currentPassword });
+    return res.redirect('/profile/settings');
+  }
 
+  if (bcrypt.compareSync(validPassword, currentPassword)) {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
-    if (!bcrypt.compareSync(hashedPassword, currentPassword)) {
-      req.flash('login-error', 'Password is incorrect');
-      return res.redirect('/profile/settings');
-    }
-
-    User.findOneAndUpdate(user._id, { password: hashedPassword }, { new: true })
+    User.findOneAndUpdate({ _id: user._id }, { password: hashedPassword }, { new: true })
       .then((result) => {
         req.session.currentUser = result;
         res.redirect('/profile/settings');
