@@ -68,13 +68,13 @@ form {
       background-color: $color-selected;
       color: $color-bg;
 
-      &:disabled {
-        background-color: $color-grey;
-      }
-
       &.real {
         background-color: $color-selected;
         color: $color-bg;
+
+        &:disabled {
+          background-color: $color-selected-opacity;
+        }
       }
 
       &.link {
